@@ -1637,26 +1637,34 @@ function updateUserUI() {
 
 function openModal(modalId) {
   const m = document.getElementById(modalId);
-  if (m) m.classList.add('open');
+  if (!m) return;
+  m.classList.add('open');
+  m.classList.remove('hidden');
 }
 
 function closeModal(modalId) {
   const m = document.getElementById(modalId);
-  if (m) m.classList.remove('open');
+  if (!m) return;
+  m.classList.remove('open');
+  m.classList.add('hidden');
 }
 
 function setupModalBackdrops() {
-  document.querySelectorAll('.modal-backdrop').forEach(modal => {
+  document.querySelectorAll('.modal-backdrop, #sosModal, #reserveModal').forEach(modal => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('open');
+        modal.classList.add('hidden');
       }
     });
   });
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      document.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+      document.querySelectorAll('.modal-backdrop.open, #sosModal:not(.hidden), #reserveModal:not(.hidden)').forEach(m => {
+        m.classList.remove('open');
+        m.classList.add('hidden');
+      });
     }
   });
 }
@@ -1941,6 +1949,31 @@ function scrollToSection(id) {
   }
 }
 
+function handleNavClick(event, targetId) {
+  if (event) event.preventDefault();
+  
+  if (targetId === 'operations-section') {
+    switchView('hq');
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  } else {
+    // If user was in HQ Ops, switch back to Citizen view to show the section
+    const citizenSec = document.getElementById('citizenViewSection');
+    if (citizenSec && citizenSec.classList.contains('hidden')) {
+      switchView('citizen');
+    }
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (targetId === 'map-section' && mapInstance) {
+        mapInstance.invalidateSize();
+      }
+    }, 100);
+  }
+}
+
 // Interactive Supply Checklist Counters
 const supplyState = {
   water: 2,
@@ -2188,6 +2221,7 @@ window.toggleAudio = toggleAudio;
 window.cycleAlerts = cycleAlerts;
 window.switchView = switchView;
 window.scrollToSection = scrollToSection;
+window.handleNavClick = handleNavClick;
 window.adjustSupply = adjustSupply;
 window.submitSupplyRequest = submitSupplyRequest;
 window.openCampReservation = openCampReservation;

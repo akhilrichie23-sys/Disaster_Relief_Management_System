@@ -105,12 +105,12 @@
 
         <!-- Top Navigation Links (Smooth Section Scrolling) -->
         <nav class="hidden lg:flex items-center gap-6 text-xs sm:text-sm font-semibold text-gray-300 tracking-wide uppercase">
-          <a href="#hero-section" class="hover:text-cyan-400 transition">HOME</a>
-          <a href="#news-section" class="hover:text-cyan-400 transition">NEWS / UPDATES</a>
-          <a href="#map-section" class="hover:text-cyan-400 transition">MAP</a>
-          <a href="#sheltersSection" class="hover:text-cyan-400 transition">RELIEF CAMPS</a>
-          <a href="#suppliesSection" class="hover:text-cyan-400 transition">SUPPLIES</a>
-          <a href="#operations-section" class="hover:text-cyan-400 transition">OPERATIONS</a>
+          <a href="#hero-section" onclick="handleNavClick(event, 'hero-section')" class="hover:text-cyan-400 transition cursor-pointer">HOME</a>
+          <a href="#news-section" onclick="handleNavClick(event, 'news-section')" class="hover:text-cyan-400 transition cursor-pointer">NEWS / UPDATES</a>
+          <a href="#map-section" onclick="handleNavClick(event, 'map-section')" class="hover:text-cyan-400 transition cursor-pointer">MAP</a>
+          <a href="#sheltersSection" onclick="handleNavClick(event, 'sheltersSection')" class="hover:text-cyan-400 transition cursor-pointer">RELIEF CAMPS</a>
+          <a href="#suppliesSection" onclick="handleNavClick(event, 'suppliesSection')" class="hover:text-cyan-400 transition cursor-pointer">SUPPLIES</a>
+          <a href="#operations-section" onclick="handleNavClick(event, 'operations-section')" class="hover:text-cyan-400 transition cursor-pointer">OPERATIONS</a>
         </nav>
 
         <!-- Center: Live System Status / Clock -->
@@ -214,13 +214,13 @@
 
         <!-- CTA Action Buttons (Matching Mockup Pill Style) -->
         <div class="pt-4 flex flex-wrap items-center gap-4">
-          <a href="#news-section" class="px-7 py-3.5 rounded-2xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-sky-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center">
+          <a href="#news-section" onclick="handleNavClick(event, 'news-section')" class="px-7 py-3.5 rounded-2xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-sky-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center cursor-pointer">
             Latest Updates
           </a>
-          <a href="#map-section" class="px-7 py-3.5 rounded-2xl bg-white/95 hover:bg-white text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-slate-300 text-center">
+          <a href="#map-section" onclick="handleNavClick(event, 'map-section')" class="px-7 py-3.5 rounded-2xl bg-white/95 hover:bg-white text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-slate-300 text-center cursor-pointer">
             Disaster Map
           </a>
-          <button onclick="triggerEmergencyModal()" class="px-6 py-3.5 rounded-2xl bg-red-600/90 hover:bg-red-500 text-white font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-red-600/30 transition-all border border-red-400/40 flex items-center gap-2">
+          <button onclick="triggerEmergencyModal()" class="px-6 py-3.5 rounded-2xl bg-red-600/90 hover:bg-red-500 text-white font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-red-600/30 transition-all border border-red-400/40 flex items-center gap-2 cursor-pointer">
             <span>🆘</span>
             <span>Emergency SOS</span>
           </button>
@@ -698,8 +698,8 @@
   <div id="sosModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
     <div class="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-gray-900 border-2 border-red-600 shadow-2xl glow-red space-y-6">
       
-      <button onclick="closeModal('sosModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <button type="button" aria-label="Close SOS Dialog" onclick="closeModal('sosModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2.5 rounded-full hover:bg-gray-800 transition z-20 cursor-pointer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -766,7 +766,7 @@
   <!-- B. RESERVATION MODAL FOR SHELTER COT -->
   <div id="reserveModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
     <div class="relative w-full max-w-md p-6 rounded-3xl bg-gray-900 border border-gray-700 shadow-2xl space-y-5">
-      <button onclick="closeModal('reserveModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">✕</button>
+      <button type="button" aria-label="Close Reservation Dialog" onclick="closeModal('reserveModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800 transition z-20 cursor-pointer text-lg font-bold">✕</button>
       
       <div>
         <span class="text-xs font-mono text-cyan-400 font-bold uppercase">Safe Shelter Reservation</span>
