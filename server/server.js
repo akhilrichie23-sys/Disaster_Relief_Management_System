@@ -11,6 +11,9 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust reverse proxy headers (Required on Render, Heroku, Vercel for X-Forwarded-For & rate-limiting)
+app.set('trust proxy', 1);
+
 // Connect to MongoDB Atlas
 if (process.env.MONGODB_URI) {
   mongoose
@@ -40,13 +43,15 @@ const generalLimiter = rateLimit({
   max: 5000, // Generous capacity for live polling & dashboards
   message: { success: false, error: 'Too many requests from this IP, please try again later.' },
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  validate: { xForwardedForHeader: false }
 });
 
 const highFrequencyLimiter = rateLimit({
   windowMs: 5 * 60 * 1000,
   max: 1000,
-  message: { success: false, error: 'Rate limit exceeded for critical operations. Please wait a moment.' }
+  message: { success: false, error: 'Rate limit exceeded for critical operations. Please wait a moment.' },
+  validate: { xForwardedForHeader: false }
 });
 
 app.use(generalLimiter);
