@@ -39,6 +39,18 @@
   ],
   "incidents": [
     {
+      "id": "INC-117",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.047012486190475,
+      "lng": 80.23149697196945,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-10-29 20:09",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
       "id": "INC-116",
       "type": "CYCLONE",
       "location": "Eastern Seaboard Sector 8",
@@ -460,9 +472,36 @@
         "Clean Drinking Water",
         "First Aid Post"
       ]
+    },
+    {
+      "id": "CAMP-216",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.055606702688962,
+      "lng": 80.26577538159681,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
     }
   ],
   "victims": [
+    {
+      "id": "VIC-317",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-216",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-10-29 20:09",
+      "specialNeeds": "Infant care kit"
+    },
     {
       "id": "VIC-316",
       "name": "Anita Roy",
@@ -661,7 +700,7 @@
       "id": "FOOD-1",
       "name": "Ready-to-Eat Ration Packs",
       "category": "FOOD_RATIONS",
-      "quantity": 1490,
+      "quantity": 1480,
       "unit": "Meals",
       "minThreshold": 300,
       "warehouse": "Central Depot A"
@@ -856,9 +895,35 @@
       "status": "DEPLOYED",
       "assignedLocation": "North Point Community Hall",
       "registeredDate": "2026-10-29"
+    },
+    {
+      "id": "VOL-418",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-10-29"
     }
   ],
   "emergencySOS": [
+    {
+      "id": "SOS-617",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-10-29 20:09:09"
+    },
     {
       "id": "SOS-616",
       "location": "Bridge Pillar 12, River Basin",
@@ -1121,6 +1186,14 @@
   ],
   "donations": [
     {
+      "id": "DON-517",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-10-29 20:09",
+      "txRef": "TXN-JYQO8NF"
+    },
+    {
       "id": "DON-516",
       "donorName": "Global Humanitarian Trust",
       "amount": 5000,
@@ -1250,13 +1323,13 @@
     }
   ],
   "counters": {
-    "incident": 117,
-    "camp": 216,
-    "victim": 317,
-    "volunteer": 418,
-    "donation": 517,
-    "sos": 617,
-    "citizenRequest": 714
+    "incident": 118,
+    "camp": 217,
+    "victim": 318,
+    "volunteer": 419,
+    "donation": 518,
+    "sos": 618,
+    "citizenRequest": 715
   },
   "catalog": [
     {
@@ -1394,6 +1467,40 @@
     }
   ],
   "citizenRequests": [
+    {
+      "id": "REQ-714",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-10-29 20:09:09"
+    },
     {
       "id": "REQ-713",
       "citizenName": "Deepa Krishnan",
