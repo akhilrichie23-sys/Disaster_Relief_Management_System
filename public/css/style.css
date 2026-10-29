@@ -1283,4 +1283,36 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Button & interactive hover states for smooth UX */
+.btn-action {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.btn-action:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+/* Ticker smoothness */
+#ticker-text {
+  transition: color 0.3s ease;
+}
+
+/* Focus styles for keyboard navigation accessibility */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 1px;
+}
+
+
 

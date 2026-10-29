@@ -351,9 +351,38 @@ async function refreshAllData() {
     renderDonationsTable();
     updateFormDropdowns();
     updateTabBadges();
+    updateEmergencyTicker();
   } catch (err) {
     console.error('Error refreshing disaster data:', err);
   }
+}
+
+function updateEmergencyTicker() {
+  const ticker = document.getElementById('ticker-text');
+  if (!ticker) return;
+
+  const messages = [];
+
+  const activeInc = (appData.incidents || []).filter(i => i.status !== 'RESOLVED');
+  if (activeInc.length > 0) {
+    const inc = activeInc[0];
+    messages.push(`[${inc.id}] ${inc.type} in ${inc.location}: ${(inc.affectedPopulation || 0).toLocaleString()} people affected (${inc.severity} Threat)`);
+  }
+
+  const pendingSOS = (appData.emergencySOS || []).filter(s => !s.isResolved);
+  if (pendingSOS.length > 0) {
+    messages.push(`🚨 [EMERGENCY SOS] ${pendingSOS.length} distress beacon(s) active awaiting search & rescue`);
+  }
+
+  const occupiedCamps = (appData.camps || []).filter(c => c.currentOccupancy > 0);
+  if (occupiedCamps.length > 0) {
+    const camp = occupiedCamps[0];
+    messages.push(`[${camp.id}] ${camp.name}: ${camp.currentOccupancy}/${camp.capacity} shelter beds filled`);
+  }
+
+  messages.push('[SATELLITE TELEMETRY] Live GNSS & GPS triangulation active for casualty evacuation');
+
+  ticker.textContent = messages.join('  |  ');
 }
 
 function updateTabBadges() {
@@ -640,12 +669,19 @@ function renderVictimsTable(victimsList) {
   });
 }
 
-function renderSuppliesTable() {
+function renderSuppliesTable(customList) {
   const tbody = document.getElementById('table-supplies-body');
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  appData.supplies.forEach(s => {
+  const list = customList || appData.supplies || [];
+
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-dim); padding: 1.5rem;">No inventory supplies match the selected filter.</td></tr>`;
+    return;
+  }
+
+  list.forEach(s => {
     const isLow = s.quantity <= s.minThreshold;
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -703,19 +739,21 @@ function renderVolunteersTable() {
   });
 }
 
-function renderSOSTable() {
+function renderSOSTable(customList) {
   const tbody = document.getElementById('table-sos-body');
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  if (appData.emergencySOS.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 1.5rem;">No SOS distress calls currently recorded.</td></tr>`;
+  const list = customList || appData.emergencySOS || [];
+
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 1.5rem;">No SOS distress calls match the filter.</td></tr>`;
     return;
   }
 
   const canResolve = currentUser.role === 'admin' || currentUser.role === 'coordinator' || currentUser.role === 'volunteer';
 
-  appData.emergencySOS.forEach(sos => {
+  list.forEach(sos => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong style="font-family: var(--font-mono); color: #fca5a5;">${sos.id}</strong></td>
@@ -1620,6 +1658,34 @@ function filterIncidents() {
   }
 }
 
+function filterSupplies() {
+  const stockEl = document.getElementById('filter-supply-stock');
+  const selected = stockEl ? stockEl.value : '';
+  if (!selected) {
+    renderSuppliesTable(appData.supplies);
+  } else if (selected === 'LOW') {
+    const filtered = appData.supplies.filter(s => s.quantity <= s.minThreshold);
+    renderSuppliesTable(filtered);
+  } else if (selected === 'ADEQUATE') {
+    const filtered = appData.supplies.filter(s => s.quantity > s.minThreshold);
+    renderSuppliesTable(filtered);
+  }
+}
+
+function filterSOS() {
+  const sosEl = document.getElementById('filter-sos-status');
+  const selected = sosEl ? sosEl.value : '';
+  if (!selected) {
+    renderSOSTable(appData.emergencySOS);
+  } else if (selected === 'PENDING') {
+    const filtered = appData.emergencySOS.filter(s => !s.isResolved);
+    renderSOSTable(filtered);
+  } else if (selected === 'RESOLVED') {
+    const filtered = appData.emergencySOS.filter(s => s.isResolved);
+    renderSOSTable(filtered);
+  }
+}
+
 function exportData(resource, format = 'csv') {
   showToast(`Preparing ${resource} ${format.toUpperCase()} export...`, 'info');
   const url = `/api/export/${resource}?format=${format}`;
@@ -1661,4 +1727,6 @@ window.submitDonation = submitDonation;
 window.refreshAllData = refreshAllData;
 window.filterCitizenRequests = filterCitizenRequests;
 window.filterIncidents = filterIncidents;
+window.filterSupplies = filterSupplies;
+window.filterSOS = filterSOS;
 window.exportData = exportData;
