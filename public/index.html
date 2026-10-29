@@ -83,6 +83,13 @@
 
       <!-- Quick Action Navigation Controls -->
       <div class="flex items-center gap-1.5 sm:gap-3">
+        <!-- Live Cloud DB Sync Indicator -->
+        <div id="live-sync-indicator" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-emerald-500/30 text-[11px] font-mono font-medium text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>LIVE SYNC</span>
+          <span id="last-sync-time" class="text-slate-400 text-[10px] ml-1">00:00:00</span>
+        </div>
+
         <!-- View Toggle Buttons: Desktop & Tablet -->
         <div class="flex p-1 bg-relief-850 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-semibold">
           <button id="btn-view-landing" class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-white bg-blue-600 shadow-md" onclick="toggleViewMode('landing')">
@@ -422,6 +429,26 @@
                 <div class="legend-item"><span class="legend-dot cyan"></span> Shelters & Camps</div>
                 <div class="legend-item"><span class="legend-dot purple"></span> Pending SOS / Requisitions</div>
               </div>
+            </div>
+            <!-- Map Filter Toolbar -->
+            <div class="map-filter-bar flex items-center justify-between gap-2 p-2 mb-2 bg-slate-900/80 rounded-xl border border-slate-800 text-xs">
+              <div class="flex items-center gap-3">
+                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
+                  <input type="checkbox" id="layer-incidents" checked onchange="toggleMapLayer('incidents')" class="accent-red-500 rounded" />
+                  <span>Incidents</span>
+                </label>
+                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
+                  <input type="checkbox" id="layer-camps" checked onchange="toggleMapLayer('camps')" class="accent-cyan-500 rounded" />
+                  <span>Shelters</span>
+                </label>
+                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
+                  <input type="checkbox" id="layer-sos" checked onchange="toggleMapLayer('sos')" class="accent-purple-500 rounded" />
+                  <span>Distress SOS</span>
+                </label>
+              </div>
+              <button onclick="recenterMapOnUser()" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-[11px] font-semibold flex items-center gap-1 transition-all">
+                <span>🛰️</span> My GPS
+              </button>
             </div>
             <div id="disaster-map"></div>
           </div>

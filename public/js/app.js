@@ -20,6 +20,13 @@ let mapInstance = null;
 let mapMarkersGroup = null;
 let userGPSMarker = null;
 
+// Map layers visibility state
+let mapLayersVisible = {
+  incidents: true,
+  camps: true,
+  sos: true
+};
+
 // User's acquired GPS coordinates
 let userCurrentCoords = {
   lat: 13.0827,
@@ -352,6 +359,13 @@ async function refreshAllData() {
     updateFormDropdowns();
     updateTabBadges();
     updateEmergencyTicker();
+
+    // Update real-time sync timestamp indicator
+    const syncTimeEl = document.getElementById('last-sync-time');
+    if (syncTimeEl) {
+      const now = new Date();
+      syncTimeEl.textContent = now.toLocaleTimeString();
+    }
   } catch (err) {
     console.error('Error refreshing disaster data:', err);
   }
@@ -1141,110 +1155,138 @@ function renderMapMarkers() {
   mapMarkersGroup.clearLayers();
 
   // Add Incident Markers
-  appData.incidents.forEach(inc => {
-    if (inc.lat && inc.lng && inc.status !== 'RESOLVED') {
-      const circle = L.circleMarker([inc.lat, inc.lng], {
-        radius: 14,
-        fillColor: '#ef4444',
-        color: '#ffffff',
-        weight: 2,
-        opacity: 0.9,
-        fillOpacity: 0.65
-      });
-
-      circle.bindPopup(`
-        <div style="color: #000; font-family: sans-serif;">
-          <h4 style="color: #dc2626; margin: 0 0 4px 0;">⚡ ${escapeHtml(inc.type)} [${inc.id}]</h4>
-          <p style="margin: 0 0 4px 0;"><strong>Location:</strong> ${escapeHtml(inc.location)}</p>
-          <p style="margin: 0 0 4px 0;"><strong>Severity:</strong> ${inc.severity}</p>
-          <p style="margin: 0;"><strong>Affected Pop:</strong> ${(inc.affectedPopulation || 0).toLocaleString()}</p>
-        </div>
-      `);
-      mapMarkersGroup.addLayer(circle);
-    }
-  });
-
-  // Add Camp Markers
-  appData.camps.forEach(camp => {
-    if (camp.lat && camp.lng) {
-      const marker = L.circleMarker([camp.lat, camp.lng], {
-        radius: 11,
-        fillColor: '#06b6d4',
-        color: '#ffffff',
-        weight: 2,
-        opacity: 0.9,
-        fillOpacity: 0.8
-      });
-
-      marker.bindPopup(`
-        <div style="color: #000; font-family: sans-serif;">
-          <h4 style="color: #0284c7; margin: 0 0 4px 0;">🏕️ ${escapeHtml(camp.name)}</h4>
-          <p style="margin: 0 0 4px 0;"><strong>Occupancy:</strong> ${camp.currentOccupancy} / ${camp.capacity}</p>
-          <p style="margin: 0 0 4px 0;"><strong>Coordinator:</strong> ${escapeHtml(camp.coordinator)}</p>
-          <p style="margin: 0;"><strong>Phone:</strong> ${escapeHtml(camp.contact)}</p>
-        </div>
-      `);
-      mapMarkersGroup.addLayer(marker);
-    }
-  });
-
-  // Add SOS Markers (Urgent Distress)
-  appData.emergencySOS.forEach(sos => {
-    if (sos.lat && sos.lng && !sos.isResolved) {
-      const sosMarker = L.circleMarker([sos.lat, sos.lng], {
-        radius: 13,
-        fillColor: '#8b5cf6',
-        color: '#ef4444',
-        weight: 3,
-        opacity: 1,
-        fillOpacity: 0.95
-      });
-
-      sosMarker.bindPopup(`
-        <div style="color: #000; font-family: sans-serif; min-width: 200px;">
-          <h4 style="color: #dc2626; margin: 0 0 6px 0; font-size: 14px;">🆘 SOS: ${escapeHtml(sos.callerName)}</h4>
-          <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Trapped:</strong> ${sos.peopleTrapped} people</p>
-          <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Location:</strong> ${escapeHtml(sos.location)}</p>
-          <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>GPS:</strong> ${sos.lat.toFixed(4)}° N, ${sos.lng.toFixed(4)}° E</p>
-          <p style="margin: 0; font-size: 12px; color: #475569;">${escapeHtml(sos.description)}</p>
-        </div>
-      `);
-      mapMarkersGroup.addLayer(sosMarker);
-    }
-  });
-
-  // Add Citizen Requisition Markers
-  if (appData.citizenRequests) {
-    appData.citizenRequests.forEach(req => {
-      if (req.lat && req.lng && req.status !== 'DELIVERED') {
-        const reqMarker = L.circleMarker([req.lat, req.lng], {
-          radius: 11,
-          fillColor: '#8b5cf6',
+  if (mapLayersVisible.incidents) {
+    appData.incidents.forEach(inc => {
+      if (inc.lat && inc.lng && inc.status !== 'RESOLVED') {
+        const circle = L.circleMarker([inc.lat, inc.lng], {
+          radius: 14,
+          fillColor: '#ef4444',
           color: '#ffffff',
           weight: 2,
-          opacity: 0.95,
+          opacity: 0.9,
+          fillOpacity: 0.65
+        });
+
+        circle.bindPopup(`
+          <div style="color: #000; font-family: sans-serif;">
+            <h4 style="color: #dc2626; margin: 0 0 4px 0;">⚡ ${escapeHtml(inc.type)} [${inc.id}]</h4>
+            <p style="margin: 0 0 4px 0;"><strong>Location:</strong> ${escapeHtml(inc.location)}</p>
+            <p style="margin: 0 0 4px 0;"><strong>Severity:</strong> ${inc.severity}</p>
+            <p style="margin: 0;"><strong>Affected Pop:</strong> ${(inc.affectedPopulation || 0).toLocaleString()}</p>
+          </div>
+        `);
+        mapMarkersGroup.addLayer(circle);
+      }
+    });
+  }
+
+  // Add Camp Markers
+  if (mapLayersVisible.camps) {
+    appData.camps.forEach(camp => {
+      if (camp.lat && camp.lng) {
+        const marker = L.circleMarker([camp.lat, camp.lng], {
+          radius: 11,
+          fillColor: '#06b6d4',
+          color: '#ffffff',
+          weight: 2,
+          opacity: 0.9,
           fillOpacity: 0.8
         });
 
-        const itemsList = (req.itemsNeeded || []).map(i => `${i.quantity}x ${escapeHtml(i.name)}`).join(', ');
-
-        reqMarker.bindPopup(`
-          <div style="color: #000; font-family: sans-serif; min-width: 210px;">
-            <h4 style="color: #7c3aed; margin: 0 0 6px 0; font-size: 13px;">📦 Supply Request [${req.id}]</h4>
-            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Citizen:</strong> ${escapeHtml(req.citizenName)} (${req.peopleCount} people)</p>
-            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Location:</strong> ${escapeHtml(req.currentLocation)}</p>
-            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Status:</strong> <span style="color: #d97706; font-weight: bold;">${req.status}</span></p>
-            <p style="margin: 0; font-size: 11px; color: #334155;"><strong>Needs:</strong> ${itemsList || 'None specified'}</p>
+        marker.bindPopup(`
+          <div style="color: #000; font-family: sans-serif;">
+            <h4 style="color: #0284c7; margin: 0 0 4px 0;">🏕️ ${escapeHtml(camp.name)}</h4>
+            <p style="margin: 0 0 4px 0;"><strong>Occupancy:</strong> ${camp.currentOccupancy} / ${camp.capacity}</p>
+            <p style="margin: 0 0 4px 0;"><strong>Coordinator:</strong> ${escapeHtml(camp.coordinator)}</p>
+            <p style="margin: 0;"><strong>Phone:</strong> ${escapeHtml(camp.contact)}</p>
           </div>
         `);
-        mapMarkersGroup.addLayer(reqMarker);
+        mapMarkersGroup.addLayer(marker);
       }
     });
+  }
+
+  // Add SOS Markers (Urgent Distress)
+  if (mapLayersVisible.sos) {
+    appData.emergencySOS.forEach(sos => {
+      if (sos.lat && sos.lng && !sos.isResolved) {
+        const sosMarker = L.circleMarker([sos.lat, sos.lng], {
+          radius: 13,
+          fillColor: '#8b5cf6',
+          color: '#ef4444',
+          weight: 3,
+          opacity: 1,
+          fillOpacity: 0.95
+        });
+
+        sosMarker.bindPopup(`
+          <div style="color: #000; font-family: sans-serif; min-width: 200px;">
+            <h4 style="color: #dc2626; margin: 0 0 6px 0; font-size: 14px;">🆘 SOS: ${escapeHtml(sos.callerName)}</h4>
+            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Trapped:</strong> ${sos.peopleTrapped} people</p>
+            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Location:</strong> ${escapeHtml(sos.location)}</p>
+            <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>GPS:</strong> ${sos.lat.toFixed(4)}° N, ${sos.lng.toFixed(4)}° E</p>
+            <p style="margin: 0; font-size: 12px; color: #475569;">${escapeHtml(sos.description)}</p>
+          </div>
+        `);
+        mapMarkersGroup.addLayer(sosMarker);
+      }
+    });
+
+    // Add Citizen Requisition Markers
+    if (appData.citizenRequests) {
+      appData.citizenRequests.forEach(req => {
+        if (req.lat && req.lng && req.status !== 'DELIVERED') {
+          const reqMarker = L.circleMarker([req.lat, req.lng], {
+            radius: 11,
+            fillColor: '#8b5cf6',
+            color: '#ffffff',
+            weight: 2,
+            opacity: 0.95,
+            fillOpacity: 0.8
+          });
+
+          const itemsList = (req.itemsNeeded || []).map(i => `${i.quantity}x ${escapeHtml(i.name)}`).join(', ');
+
+          reqMarker.bindPopup(`
+            <div style="color: #000; font-family: sans-serif; min-width: 210px;">
+              <h4 style="color: #7c3aed; margin: 0 0 6px 0; font-size: 13px;">📦 Supply Request [${req.id}]</h4>
+              <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Citizen:</strong> ${escapeHtml(req.citizenName)} (${req.peopleCount} people)</p>
+              <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Location:</strong> ${escapeHtml(req.currentLocation)}</p>
+              <p style="margin: 0 0 4px 0; font-size: 12px;"><strong>Status:</strong> <span style="color: #d97706; font-weight: bold;">${req.status}</span></p>
+              <p style="margin: 0; font-size: 11px; color: #334155;"><strong>Needs:</strong> ${itemsList || 'None specified'}</p>
+            </div>
+          `);
+          mapMarkersGroup.addLayer(reqMarker);
+        }
+      });
+    }
   }
 
   // Re-pin user GPS marker if available
   if (userCurrentCoords.isLocked) {
     pinUserGPSOnMap(userCurrentCoords.lat, userCurrentCoords.lng);
+  }
+}
+
+function toggleMapLayer(layerKey) {
+  const checkbox = document.getElementById(`layer-${layerKey}`);
+  if (checkbox) {
+    mapLayersVisible[layerKey] = checkbox.checked;
+    renderMapMarkers();
+  }
+}
+
+function recenterMapOnUser() {
+  if (mapInstance && userCurrentCoords.isLocked) {
+    mapInstance.setView([userCurrentCoords.lat, userCurrentCoords.lng], 14, { animate: true });
+    showToast('Recentered tactical map to your live GPS coordinates', 'info');
+  } else {
+    acquireLiveGPS(true);
+    if (mapInstance) {
+      setTimeout(() => {
+        mapInstance.setView([userCurrentCoords.lat, userCurrentCoords.lng], 14, { animate: true });
+      }, 500);
+    }
   }
 }
 
@@ -1730,3 +1772,5 @@ window.filterIncidents = filterIncidents;
 window.filterSupplies = filterSupplies;
 window.filterSOS = filterSOS;
 window.exportData = exportData;
+window.toggleMapLayer = toggleMapLayer;
+window.recenterMapOnUser = recenterMapOnUser;
