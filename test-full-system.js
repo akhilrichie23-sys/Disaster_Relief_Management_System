@@ -40,7 +40,29 @@ function request(method, path, body = null, headers = {}) {
   });
 }
 
+async function isServerRunning() {
+  try {
+    const res = await request('GET', '/api/dashboard/stats');
+    return res && res.status === 200;
+  } catch (e) {
+    return false;
+  }
+}
+
 async function runComprehensiveTests() {
+  let serverInstance = null;
+  const running = await isServerRunning();
+
+  if (!running) {
+    console.log('⚡ Starting in-process test server on port 3000...');
+    try {
+      serverInstance = require('./server/server');
+      await new Promise(r => setTimeout(r, 600));
+    } catch (err) {
+      console.error('Failed to start test server:', err.message);
+    }
+  }
+
   console.log('====================================================');
   console.log('🚀 RUNNING COMPREHENSIVE END-TO-END SYSTEM TEST SUITE');
   console.log('====================================================\n');
