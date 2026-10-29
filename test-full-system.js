@@ -247,6 +247,19 @@ async function runComprehensiveTests() {
     if (res.status !== 201 || !res.body.data) throw new Error('Donation failed');
   });
 
+  // 14. DATA EXPORT (JSON & CSV)
+  await test('Bulk Data Export CSV & JSON Generation', async () => {
+    const jsonRes = await request('GET', '/api/export/incidents?format=json');
+    if (jsonRes.status !== 200 || !jsonRes.body.success || !Array.isArray(jsonRes.body.data)) {
+      throw new Error('JSON export endpoint failed');
+    }
+
+    const csvRes = await request('GET', '/api/export/supplies?format=csv');
+    if (csvRes.status !== 200 || typeof csvRes.body !== 'string' || !csvRes.body.includes('quantity')) {
+      throw new Error('CSV export endpoint failed');
+    }
+  });
+
   console.log('\n====================================================');
   console.log(`🎯 TOTAL RESULTS: ${passed}/${total} MODULE TESTS PASSED (100%)`);
   console.log('====================================================\n');

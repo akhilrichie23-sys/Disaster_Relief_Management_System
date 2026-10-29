@@ -332,6 +332,86 @@
 
       <!-- TAB 1: SITUATION ROOM (DASHBOARD & INTERACTIVE MAP) -->
       <div id="tab-dashboard" class="tab-view active">
+        <!-- Live Mission Control Telemetry Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card red">
+            <div class="metric-header">
+              <span>Active Disasters</span>
+              <span>⚡</span>
+            </div>
+            <div class="metric-val" id="stat-active-incidents">0</div>
+            <div class="metric-sub">
+              <span>Impacted Area:</span> <strong id="stat-affected-pop">0</strong> souls
+            </div>
+          </div>
+
+          <div class="metric-card amber">
+            <div class="metric-header">
+              <span>Shelter Capacity</span>
+              <span>🏕️</span>
+            </div>
+            <div class="metric-val" id="stat-occupancy-rate">0%</div>
+            <div class="metric-sub">
+              <span id="stat-camp-headcount">0</span> / <span id="stat-camp-cap">0</span> beds filled
+            </div>
+          </div>
+
+          <div class="metric-card cyan">
+            <div class="metric-header">
+              <span>Evacuees Admitted</span>
+              <span>👥</span>
+            </div>
+            <div class="metric-val" id="stat-registered-victims">0</div>
+            <div class="metric-sub">
+              <span>Critical Triage:</span> <strong id="stat-critical-victims" class="text-rose-400">0</strong>
+            </div>
+          </div>
+
+          <div class="metric-card purple">
+            <div class="metric-header">
+              <span>Volunteer Forces</span>
+              <span>🦺</span>
+            </div>
+            <div class="metric-val" id="stat-available-volunteers">0 / 0</div>
+            <div class="metric-sub">
+              <span>Field Deployed:</span> <strong id="stat-deployed-volunteers">0</strong>
+            </div>
+          </div>
+
+          <div class="metric-card red">
+            <div class="metric-header">
+              <span>Pending SOS Calls</span>
+              <span>🚨</span>
+            </div>
+            <div class="metric-val text-red-400" id="stat-pending-sos">0</div>
+            <div class="metric-sub">
+              <span>Immediate Life Threat</span>
+            </div>
+          </div>
+
+          <div class="metric-card cyan">
+            <div class="metric-header">
+              <span>Citizen Requests</span>
+              <span>📦</span>
+            </div>
+            <div class="metric-val text-cyan-400" id="stat-pending-citizen-requests">0</div>
+            <div class="metric-sub">
+              <span>Awaiting Delivery / Dispatch</span>
+            </div>
+          </div>
+
+          <div class="metric-card emerald">
+            <div class="metric-header">
+              <span>Relief Aid Funds</span>
+              <span>💰</span>
+            </div>
+            <div class="metric-val text-emerald-400" id="stat-total-funds">$0</div>
+            <div class="metric-sub">
+              <span>Live Emergency Donations</span>
+            </div>
+          </div>
+        </div>
+
         <div class="dashboard-layout">
           <!-- Interactive Disaster Zone Map -->
           <div class="glass-panel">
@@ -405,6 +485,18 @@
         <div class="glass-panel">
           <div class="panel-title-bar">
             <h2 class="panel-title"><span>📋</span> Active Citizen Relief Requisitions & Manifests</h2>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <select id="filter-citizen-status" onchange="filterCitizenRequests()" class="px-2.5 py-1 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
+                <option value="">All Statuses</option>
+                <option value="PENDING">Pending</option>
+                <option value="PACKED">Packed</option>
+                <option value="IN_TRANSIT">In Transit</option>
+                <option value="DELIVERED">Delivered</option>
+              </select>
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('citizen-requests', 'csv')">
+                ⬇️ Export CSV
+              </button>
+            </div>
           </div>
           <div class="table-responsive">
             <table class="custom-table">
@@ -435,9 +527,21 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>⚡</span> Disaster Incidents & Threat Zones</h2>
             </div>
-            <button id="btn-new-incident" class="btn-action danger" onclick="openModal('modal-incident')">
-              <span>+</span> Register New Incident
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <select id="filter-incident-severity" onchange="filterIncidents()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
+                <option value="">All Severities</option>
+                <option value="CRITICAL">Critical</option>
+                <option value="HIGH">High</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="LOW">Low</option>
+              </select>
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('incidents', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button id="btn-new-incident" class="btn-action danger" onclick="openModal('modal-incident')">
+                <span>+</span> Register New Incident
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -467,9 +571,14 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>🏕️</span> Relief Shelters & Capacity Management</h2>
             </div>
-            <button id="btn-new-camp" class="btn-action" onclick="openModal('modal-camp')">
-              <span>+</span> Establish New Relief Camp
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('camps', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button id="btn-new-camp" class="btn-action" onclick="openModal('modal-camp')">
+                <span>+</span> Establish New Relief Camp
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -499,9 +608,14 @@
               <span>🔍</span>
               <input type="text" id="input-victim-search" placeholder="Search missing persons by name, kin contact, or ID..." oninput="handleVictimSearch()" />
             </div>
-            <button id="btn-new-victim" class="btn-action success" onclick="openModal('modal-victim')">
-              <span>+</span> Admit Evacuee / Patient
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('victims', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button id="btn-new-victim" class="btn-action success" onclick="openModal('modal-victim')">
+                <span>+</span> Admit Evacuee / Patient
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -530,7 +644,10 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>📦</span> Humanitarian Aid Supplies & Warehouse Stock</h2>
             </div>
-            <div style="display: flex; gap: 0.75rem;">
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('supplies', 'csv')">
+                ⬇️ Export CSV
+              </button>
               <button class="btn-action secondary" onclick="openModal('modal-replenish-supply')">
                 <span>+</span> Inbound Stock Replenish
               </button>
@@ -566,9 +683,14 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>🦺</span> Volunteer Personnel & First Responder Deployment</h2>
             </div>
-            <button class="btn-action purple" style="background: var(--accent-purple);" onclick="openModal('modal-volunteer')">
-              <span>+</span> Enlist Volunteer
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('volunteers', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button class="btn-action purple" style="background: var(--accent-purple);" onclick="openModal('modal-volunteer')">
+                <span>+</span> Enlist Volunteer
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -597,9 +719,14 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>🚨</span> Emergency SOS Distress Queue</h2>
             </div>
-            <button class="btn-action danger" onclick="openModal('modal-sos')">
-              <span>🆘</span> Transmit Emergency SOS
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('sos', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button class="btn-action danger" onclick="openModal('modal-sos')">
+                <span>🆘</span> Transmit Emergency SOS
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -629,9 +756,14 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>💰</span> Humanitarian Aid & Donation Ledger</h2>
             </div>
-            <button class="btn-action success" onclick="openModal('modal-donation')">
-              <span>❤️</span> Make a Relief Donation
-            </button>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('donations', 'csv')">
+                ⬇️ Export CSV
+              </button>
+              <button class="btn-action success" onclick="openModal('modal-donation')">
+                <span>❤️</span> Make a Relief Donation
+              </button>
+            </div>
           </div>
 
           <div class="table-responsive">

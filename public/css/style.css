@@ -1261,3 +1261,26 @@ body {
   }
 }
 
+/* Glassmorphism improvements & Enhanced UI accents */
+.metrics-grid {
+  margin-bottom: 0.5rem;
+}
+
+.metric-card {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+.custom-table tr {
+  transition: background-color 0.15s ease;
+}
+
+.custom-table tr:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.custom-table select,
+.custom-table input {
+  font-family: var(--font-sans);
+}
+
+

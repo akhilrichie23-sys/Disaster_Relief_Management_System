@@ -667,4 +667,78 @@ router.post('/donations', (req, res) => {
   });
 });
 
+// =========================================================================
+// 11. BULK DATA EXPORT (CSV / JSON) FOR DISASTER AUDITING & DISPATCH
+// =========================================================================
+
+router.get('/export/:resource', (req, res) => {
+  const { resource } = req.params;
+  const { format = 'json' } = req.query;
+  const data = db.get();
+
+  let records = [];
+  let filename = `drms-${resource}-${new Date().toISOString().slice(0, 10)}`;
+
+  switch (resource) {
+    case 'incidents':
+      records = data.incidents || [];
+      break;
+    case 'camps':
+      records = data.camps || [];
+      break;
+    case 'victims':
+      records = data.victims || [];
+      break;
+    case 'supplies':
+      records = data.supplies || [];
+      break;
+    case 'volunteers':
+      records = data.volunteers || [];
+      break;
+    case 'sos':
+      records = data.emergencySOS || [];
+      break;
+    case 'citizen-requests':
+      records = data.citizenRequests || [];
+      break;
+    case 'donations':
+      records = data.donations || [];
+      break;
+    default:
+      return res.status(400).json({ success: false, error: 'Invalid resource for export' });
+  }
+
+  if (format === 'csv') {
+    if (records.length === 0) {
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}.csv"`);
+      return res.send('');
+    }
+
+    // Extract headers
+    const sample = records[0];
+    const headers = Object.keys(sample).filter(k => typeof sample[k] !== 'object' || sample[k] === null);
+    const csvRows = [headers.join(',')];
+
+    for (const row of records) {
+      const values = headers.map(header => {
+        let val = row[header];
+        if (val === null || val === undefined) return '""';
+        const strVal = String(val).replace(/"/g, '""');
+        return `"${strVal}"`;
+      });
+      csvRows.push(values.join(','));
+    }
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}.csv"`);
+    return res.send(csvRows.join('\r\n'));
+  }
+
+  // Default JSON export
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}.json"`);
+  return res.json({ success: true, count: records.length, exportedAt: new Date().toISOString(), data: records });
+});
+
 module.exports = router;

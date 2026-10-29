@@ -477,14 +477,16 @@ function renderCitizenRequestsTable(reqList) {
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  if (!reqList || reqList.length === 0) {
+  const list = reqList || appData.citizenRequests || [];
+
+  if (!list || list.length === 0) {
     tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 1.5rem;">No citizen relief requests found.</td></tr>`;
     return;
   }
 
   const canCoordinate = currentUser.role === 'admin' || currentUser.role === 'coordinator' || currentUser.role === 'volunteer';
 
-  reqList.forEach(req => {
+  list.forEach(req => {
     const tr = document.createElement('tr');
 
     const neededHtml = (req.itemsNeeded || []).map(item => `
@@ -542,17 +544,19 @@ function renderCitizenRequestsTable(reqList) {
   });
 }
 
-function renderIncidentsTable() {
+function renderIncidentsTable(customList) {
   const tbody = document.getElementById('table-incidents-body');
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  if (appData.incidents.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-dim);">No incidents reported.</td></tr>`;
+  const list = customList || appData.incidents || [];
+
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 1.5rem;">No incidents found matching criteria.</td></tr>`;
     return;
   }
 
-  appData.incidents.forEach(inc => {
+  list.forEach(inc => {
     const tr = document.createElement('tr');
     const isCommander = currentUser.role === 'admin' || currentUser.role === 'coordinator';
 
@@ -1590,6 +1594,44 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+// =========================================
+// 10. CLIENT-SIDE FILTERING & DATA EXPORT
+// =========================================
+
+function filterCitizenRequests() {
+  const statusEl = document.getElementById('filter-citizen-status');
+  const selectedStatus = statusEl ? statusEl.value : '';
+  if (!selectedStatus) {
+    renderCitizenRequestsTable(appData.citizenRequests);
+  } else {
+    const filtered = appData.citizenRequests.filter(r => r.status === selectedStatus);
+    renderCitizenRequestsTable(filtered);
+  }
+}
+
+function filterIncidents() {
+  const sevEl = document.getElementById('filter-incident-severity');
+  const selectedSev = sevEl ? sevEl.value : '';
+  if (!selectedSev) {
+    renderIncidentsTable(appData.incidents);
+  } else {
+    const filtered = appData.incidents.filter(i => i.severity === selectedSev);
+    renderIncidentsTable(filtered);
+  }
+}
+
+function exportData(resource, format = 'csv') {
+  showToast(`Preparing ${resource} ${format.toUpperCase()} export...`, 'info');
+  const url = `/api/export/${resource}?format=${format}`;
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', `drms-${resource}-${new Date().toISOString().slice(0, 10)}.${format}`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 // Ensure all handlers are attached directly to global window object
 window.acquireLiveGPS = acquireLiveGPS;
 window.openModal = openModal;
@@ -1617,3 +1659,6 @@ window.promptDeployVolunteer = promptDeployVolunteer;
 window.recallVolunteer = recallVolunteer;
 window.submitDonation = submitDonation;
 window.refreshAllData = refreshAllData;
+window.filterCitizenRequests = filterCitizenRequests;
+window.filterIncidents = filterIncidents;
+window.exportData = exportData;
