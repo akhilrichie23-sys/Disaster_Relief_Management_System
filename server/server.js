@@ -14,16 +14,44 @@ const PORT = process.env.PORT || 3000;
 // Trust reverse proxy headers (Required on Render, Heroku, Vercel for X-Forwarded-For & rate-limiting)
 app.set('trust proxy', 1);
 
-// Connect to MongoDB Atlas
+// Robust & Resilient Connection to MongoDB Atlas
 if (process.env.MONGODB_URI) {
-  mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(() => {
-      console.log('  🍃 MongoDB Atlas Connected: Cloud Database Synchronized');
-    })
-    .catch((err) => {
-      console.warn('  ⚠️ MongoDB Atlas Connection Notice:', err.message);
-    });
+  const mongooseOptions = {
+    maxPoolSize: 10,
+    minPoolSize: 2,
+    serverSelectionTimeoutMS: 10000,
+    socketTimeoutMS: 45000,
+    heartbeatFrequencyMS: 10000,
+    retryWrites: true,
+    w: 'majority'
+  };
+
+  const connectWithRetry = () => {
+    mongoose
+      .connect(process.env.MONGODB_URI, mongooseOptions)
+      .then(() => {
+        console.log('  🍃 MongoDB Atlas Connected: Cloud Database Synchronized');
+      })
+      .catch((err) => {
+        console.warn('  ⚠️ MongoDB Atlas Initial Connect Notice:', err.message);
+        console.log('  🔄 Retrying MongoDB connection in 5 seconds...');
+        setTimeout(connectWithRetry, 5000);
+      });
+  };
+
+  connectWithRetry();
+
+  mongoose.connection.on('disconnected', () => {
+    console.warn('  ⚠️ MongoDB Atlas connection lost. Auto-reconnecting...');
+  });
+
+  mongoose.connection.on('reconnected', () => {
+    console.log('  🍃 MongoDB Atlas reconnected successfully.');
+  });
+
+  mongoose.connection.on('error', (err) => {
+    console.error('  ❌ MongoDB Atlas runtime error:', err.message);
+  });
 }
 
 // Security Middleware: Helmet with CSP relaxed for smooth local browser interaction & Tailwind/Leaflet
