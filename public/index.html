@@ -644,7 +644,12 @@
             <div class="panel-title-bar">
               <h2 class="panel-title"><span>📦</span> Humanitarian Aid Supplies & Warehouse Stock</h2>
             </div>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <select id="filter-supply-stock" onchange="filterSupplies()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
+                <option value="">All Stock Levels</option>
+                <option value="LOW">Low Stock Alert (&le; Threshold)</option>
+                <option value="ADEQUATE">Adequate Stock</option>
+              </select>
               <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('supplies', 'csv')">
                 ⬇️ Export CSV
               </button>
@@ -720,6 +725,11 @@
               <h2 class="panel-title"><span>🚨</span> Emergency SOS Distress Queue</h2>
             </div>
             <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <select id="filter-sos-status" onchange="filterSOS()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
+                <option value="">All SOS Calls</option>
+                <option value="PENDING" selected>Pending Rescue</option>
+                <option value="RESOLVED">Rescued / Resolved</option>
+              </select>
               <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('sos', 'csv')">
                 ⬇️ Export CSV
               </button>
