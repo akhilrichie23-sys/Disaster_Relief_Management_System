@@ -16,7 +16,30 @@ function get(path) {
   });
 }
 
+async function isServerRunning() {
+  try {
+    const res = await get('/api/dashboard/stats');
+    return res && res.status === 200;
+  } catch (e) {
+    return false;
+  }
+}
+
 async function runHealthCheck() {
+  let serverInstance = null;
+  const running = await isServerRunning();
+
+  if (!running) {
+    console.log('⚡ Starting in-process test server on port 3000...');
+    try {
+      serverInstance = require('./server/server');
+      // Wait briefly for server to bind
+      await new Promise(r => setTimeout(r, 600));
+    } catch (err) {
+      console.error('Failed to start test server:', err.message);
+    }
+  }
+
   console.log('--- Verifying Disaster Relief System Endpoints ---');
   
   const endpoints = [
@@ -48,6 +71,11 @@ async function runHealthCheck() {
   }
 
   console.log(`\nResults: ${passed}/${endpoints.length} endpoints verified successfully.`);
+
+  if (serverInstance && serverInstance.close) {
+    serverInstance.close();
+  }
+
   process.exit(passed === endpoints.length ? 0 : 1);
 }
 
