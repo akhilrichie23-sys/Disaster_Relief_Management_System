@@ -41,10 +41,14 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-main);
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 85% 85%, rgba(239, 68, 68, 0.06) 0%, transparent 40%),
     radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
   color: var(--text-main);
@@ -54,6 +58,23 @@ body {
   flex-direction: column;
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+.emergency-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.glow-red {
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.45);
+}
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.25);
+}
+.glow-amber {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
 }
 
 /* Custom Scrollbars */

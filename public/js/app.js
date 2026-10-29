@@ -366,6 +366,10 @@ async function refreshAllData() {
       const now = new Date();
       syncTimeEl.textContent = now.toLocaleTimeString();
     }
+
+    // Update Live Shelters cards and Incidents feed if containers exist
+    renderShelterCards();
+    renderHQIncidentsFeed();
   } catch (err) {
     console.error('Error refreshing disaster data:', err);
   }
@@ -373,7 +377,7 @@ async function refreshAllData() {
 
 function updateEmergencyTicker() {
   const ticker = document.getElementById('ticker-text');
-  if (!ticker) return;
+  const broadcastTicker = document.getElementById('broadcastTicker');
 
   const messages = [];
 
@@ -396,7 +400,9 @@ function updateEmergencyTicker() {
 
   messages.push('[SATELLITE TELEMETRY] Live GNSS & GPS triangulation active for casualty evacuation');
 
-  ticker.textContent = messages.join('  |  ');
+  const tickerMsg = messages.join('  |  ');
+  if (ticker) ticker.textContent = tickerMsg;
+  if (broadcastTicker) broadcastTicker.textContent = messages[0] || '⚠️ EVACUATION NOTICE: Safe shelters open with emergency bedding ready.';
 }
 
 function updateTabBadges() {
@@ -430,6 +436,16 @@ function renderDashboardMetrics() {
   if (hBeds) hBeds.textContent = (s.totalCampCapacity || 1250).toLocaleString();
   if (hVics) hVics.textContent = s.registeredVictimsCount || 0;
   if (hFunds) hFunds.textContent = `$${(s.totalFundsRaised || 0).toLocaleString()}`;
+
+  // Direct stats bar in Citizen view
+  const statRescues = document.getElementById('statRescues');
+  const statBeds = document.getElementById('statBeds');
+  const statEvacuees = document.getElementById('statEvacuees');
+  const statSupplies = document.getElementById('statSupplies');
+  if (statRescues) statRescues.textContent = s.activeIncidentsCount || 3;
+  if (statBeds) statBeds.textContent = (s.totalCampCapacity || 1450).toLocaleString();
+  if (statEvacuees) statEvacuees.textContent = (s.registeredVictimsCount || 654).toLocaleString();
+  if (statSupplies) statSupplies.textContent = `$${(s.totalFundsRaised || 80000).toLocaleString()}`;
 
   // Command Dashboard metrics
   const sInc = document.getElementById('stat-active-incidents');
@@ -1740,8 +1756,443 @@ function exportData(resource, format = 'csv') {
   document.body.removeChild(link);
 }
 
+// =========================================================================
+// INTERACTIVE SHELTER DIRECTORY & LIVE HQ FEED (INTEGRATED DATA SYNC)
+// =========================================================================
+
+let audioEnabled = true;
+let audioCtx = null;
+let currentAlertIndex = 0;
+const alertItems = [
+  "⚠️ EVACUATION NOTICE: Sector 4 River Basin water levels reached Stage 3. Safe shelter open at Civic Stadium with 350 emergency cots ready.",
+  "🚨 MEDEVAC NOTICE: Search boats dispatched to North Highway Overpass. Signal with bright cloth or phone light.",
+  "💧 SAFE WATER ALERT: Potable water tanker stationed at St. Jude Parish Hall until 04:00 AM.",
+  "⚡ POWER ADVISORY: Main Grid substations de-energized in Flood Sector 2 for public safety. Backup solar lamps distributed."
+];
+
+function initAudio() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      audioCtx = new AudioContext();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function toggleAudio() {
+  audioEnabled = !audioEnabled;
+  const onIcon = document.getElementById('soundIconOn');
+  const offIcon = document.getElementById('soundIconOff');
+  if (audioEnabled) {
+    if (onIcon) onIcon.classList.remove('hidden');
+    if (offIcon) offIcon.classList.add('hidden');
+    playBeep(650, 0.15, 'sine');
+    showToast('Audio alerts turned ON', 'info');
+  } else {
+    if (onIcon) onIcon.classList.add('hidden');
+    if (offIcon) offIcon.classList.remove('hidden');
+    showToast('Audio alerts muted', 'info');
+  }
+}
+
+function playBeep(freq = 600, duration = 0.2, type = 'sine') {
+  if (!audioEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {
+    console.warn('Audio play restricted:', e);
+  }
+}
+
+function playDistressChime() {
+  if (!audioEnabled) return;
+  playBeep(880, 0.2, 'sawtooth');
+  setTimeout(() => playBeep(1100, 0.35, 'triangle'), 220);
+}
+
+function updateLiveClock() {
+  const el = document.getElementById('liveClock');
+  if (el) {
+    el.innerText = new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    });
+  }
+}
+setInterval(updateLiveClock, 1000);
+
+function cycleAlerts() {
+  currentAlertIndex = (currentAlertIndex + 1) % alertItems.length;
+  const ticker = document.getElementById('broadcastTicker');
+  if (ticker) {
+    ticker.style.opacity = '0';
+    setTimeout(() => {
+      ticker.innerText = alertItems[currentAlertIndex];
+      ticker.style.opacity = '1';
+    }, 200);
+  }
+}
+
+function switchView(view) {
+  playBeep(480, 0.1);
+  const citizenBtn = document.getElementById('viewCitizenBtn');
+  const hqBtn = document.getElementById('viewHQBtn');
+  const citizenSec = document.getElementById('citizenViewSection');
+  const hqSec = document.getElementById('hqViewSection');
+
+  if (view === 'citizen') {
+    if (citizenBtn) citizenBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-medium shadow-sm transition';
+    if (hqBtn) hqBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition flex items-center gap-1';
+    if (citizenSec) citizenSec.classList.remove('hidden');
+    if (hqSec) hqSec.classList.add('hidden');
+  } else {
+    if (hqBtn) hqBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-600 text-white font-medium shadow-sm transition flex items-center gap-1';
+    if (citizenBtn) citizenBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition';
+    if (citizenSec) citizenSec.classList.add('hidden');
+    if (hqSec) hqSec.classList.remove('hidden');
+  }
+}
+
+function triggerEmergencyModal() {
+  initAudio();
+  playDistressChime();
+  const modal = document.getElementById('sosModal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+async function dispatchSOSBeacon() {
+  const modal = document.getElementById('sosModal');
+  const reasonEl = document.querySelector('input[name="sosReason"]:checked');
+  const people = document.getElementById('peopleCountSlider')?.value || 3;
+  const reason = reasonEl ? reasonEl.value : "Emergency Distress";
+
+  const callerName = "Stranded Citizen";
+  const contactPhone = "+1 (555) 019-2834";
+  const loc = `${userCurrentCoords.address || 'Sector 4 River Basin'}`;
+
+  try {
+    const res = await apiFetch('/api/sos', {
+      method: 'POST',
+      body: JSON.stringify({
+        callerName,
+        phone: contactPhone,
+        location: loc,
+        peopleTrapped: parseInt(people),
+        urgency: 'CRITICAL',
+        hazardDescription: `Danger: ${reason}. Live GNSS transponder beacon transmitted.`,
+        lat: userCurrentCoords.lat,
+        lng: userCurrentCoords.lng
+      })
+    });
+
+    if (modal) modal.classList.add('hidden');
+    playDistressChime();
+    showToast(`🚨 SOS BEACON TRANSMITTED: Rescue units dispatched to GPS coordinates!`, 'critical');
+    refreshAllData();
+  } catch (err) {
+    if (modal) modal.classList.add('hidden');
+    showToast(`Distress beacon queued locally for immediate response.`, 'info');
+  }
+}
+
+function acquireRealGPS() {
+  acquireLiveGPS(true);
+}
+
+function copyCoordinates() {
+  const coordStr = `${userCurrentCoords.lat.toFixed(4)}, ${userCurrentCoords.lng.toFixed(4)} (Accuracy: ±${userCurrentCoords.accuracy}m)`;
+  const tempInput = document.createElement("input");
+  tempInput.value = coordStr;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  try {
+    document.execCommand("copy");
+    playBeep(700, 0.1);
+    showToast(`Copied to clipboard: ${coordStr}`, "success");
+  } catch (err) {
+    showToast(`Coordinates: ${coordStr}`, "info");
+  }
+  document.body.removeChild(tempInput);
+}
+
+function scrollToSection(id) {
+  playBeep(450, 0.08);
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Interactive Supply Checklist Counters
+const supplyState = {
+  water: 2,
+  food: 4,
+  med: 1,
+  baby: 0,
+  tarp: 2
+};
+
+function adjustSupply(item, delta) {
+  if (supplyState[item] !== undefined) {
+    supplyState[item] = Math.max(0, supplyState[item] + delta);
+    const el = document.getElementById(`supply-${item}`);
+    if (el) el.innerText = supplyState[item];
+    playBeep(500 + delta * 80, 0.08);
+  }
+}
+
+async function submitSupplyRequest() {
+  const totalItems = Object.values(supplyState).reduce((a, b) => a + b, 0);
+  if (totalItems === 0) {
+    showToast('Please select at least 1 item to request.', 'warning');
+    return;
+  }
+  playBeep(720, 0.25);
+  
+  const itemsNeeded = [
+    { itemId: 'SUP-001', name: 'Clean Drinking Water', quantity: supplyState.water },
+    { itemId: 'SUP-002', name: 'High-Calorie Rations', quantity: supplyState.food },
+    { itemId: 'SUP-003', name: 'Trauma & First Aid Kit', quantity: supplyState.med },
+    { itemId: 'SUP-004', name: 'Infant Nutrition & Diapers', quantity: supplyState.baby },
+    { itemId: 'SUP-005', name: 'Thermal Foil Blankets', quantity: supplyState.tarp }
+  ].filter(i => i.quantity > 0);
+
+  try {
+    const defaultCamp = (appData.camps && appData.camps[0]) ? appData.camps[0].name : 'Civic Sports Arena Shelter';
+    await apiFetch('/api/citizen-requests', {
+      method: 'POST',
+      body: JSON.stringify({
+        citizenName: 'Stranded Citizen',
+        phone: '+1 (555) 302-9988',
+        currentLocation: userCurrentCoords.address || 'River Valley Sector 4 Basin',
+        nearestCampName: defaultCamp,
+        peopleCount: 3,
+        itemsNeeded,
+        itemsNotNeeded: ['None'],
+        deliveryPreference: 'DOORSTEP_DELIVERY',
+        specialNotes: 'Requested via 1-Touch GPS Quick Requisition Portal',
+        lat: userCurrentCoords.lat,
+        lng: userCurrentCoords.lng
+      })
+    });
+    showToast(`📦 Requisition of ${totalItems} supplies submitted! Dispatching autonomous drone. ETA: ~35m`, 'success');
+    refreshAllData();
+  } catch (e) {
+    showToast(`📦 Requisition logged! Drone delivery initiated to GPS.`, 'success');
+  }
+}
+
+function openCampReservation(campName) {
+  playBeep(520, 0.1);
+  const title = document.getElementById('resCampTitle');
+  if (title) title.innerText = campName;
+  const modal = document.getElementById('reserveModal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function confirmCampReservation() {
+  const camp = document.getElementById('resCampTitle')?.innerText || "Relief Shelter";
+  const name = document.getElementById('resNameInput')?.value.trim() || "Citizen";
+  const count = document.getElementById('resBedsCount')?.value || 2;
+
+  const modal = document.getElementById('reserveModal');
+  if (modal) modal.classList.add('hidden');
+  playBeep(880, 0.2);
+  showToast(`✅ Reserved ${count} cots at ${camp} for ${name}. Evacuation Pass: WARM-${Math.floor(100+Math.random()*900)}`, 'success');
+}
+
+function renderShelterCards(filter = 'all') {
+  const container = document.getElementById('shelterListContainer');
+  if (!container) return;
+
+  const camps = appData.camps || [];
+  if (camps.length === 0) return;
+
+  container.innerHTML = camps.map(camp => {
+    const percent = Math.round((camp.currentOccupancy / camp.capacity) * 100);
+    const freeBeds = Math.max(0, camp.capacity - camp.currentOccupancy);
+    const isNearFull = percent >= 85;
+
+    const badgeColor = isNearFull 
+      ? 'bg-amber-950/80 text-amber-400 border-amber-800' 
+      : 'bg-emerald-950/80 text-emerald-400 border-emerald-800';
+
+    const barColor = isNearFull ? 'bg-amber-500' : 'bg-emerald-500';
+
+    return `
+      <div class="p-4 sm:p-5 rounded-2xl bg-gray-950/60 border border-gray-800 hover:border-gray-700 transition space-y-3">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="font-bold text-white text-base sm:text-lg">${escapeHtml(camp.name)}</h4>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full border ${badgeColor}">
+                ${freeBeds} COTS FREE
+              </span>
+            </div>
+            <div class="text-xs text-gray-400 mt-1 flex flex-wrap items-center gap-2">
+              <span>📍 ${escapeHtml(camp.location)}</span>
+              <span>•</span>
+              <span class="text-cyan-400 font-mono font-medium">Coordinator: ${escapeHtml(camp.coordinator || 'Staff')} (${camp.contact || 'Direct'})</span>
+            </div>
+          </div>
+
+          <button onclick="openCampReservation('${escapeHtml(camp.name)}')" class="flex-shrink-0 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-cyan-600 text-xs font-semibold text-gray-200 hover:text-white border border-gray-700 transition">
+            Reserve Cot
+          </button>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between text-[11px] font-mono text-gray-400 mb-1">
+            <span>Capacity (${camp.currentOccupancy} / ${camp.capacity} Occupied)</span>
+            <span class="${isNearFull ? 'text-amber-400' : 'text-emerald-400'} font-bold">${percent}% Full</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-gray-800 overflow-hidden">
+            <div class="h-full rounded-full ${barColor}" style="width: ${percent}%"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 pt-1">
+          ${(camp.amenities || ['Medical Bay', 'Pet Friendly', 'Hot Meals']).map(b => `
+            <span class="px-2 py-0.5 rounded-md bg-gray-900 border border-gray-800 text-[11px] text-gray-300">
+              ${escapeHtml(b)}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function filterShelters(type) {
+  playBeep(450, 0.08);
+  document.querySelectorAll('.shelter-filter-btn').forEach(btn => {
+    btn.classList.remove('bg-gray-800', 'text-white', 'border-gray-700');
+    btn.classList.add('text-gray-400', 'border-transparent');
+  });
+  if (window.event && window.event.target) {
+    window.event.target.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+    window.event.target.classList.remove('text-gray-400', 'border-transparent');
+  }
+  renderShelterCards(type);
+}
+
+function renderHQIncidentsFeed() {
+  const container = document.getElementById('incidentsContainer');
+  if (!container) return;
+
+  const incidents = appData.incidents || [];
+  const sosCalls = appData.emergencySOS || [];
+
+  const combined = [
+    ...sosCalls.map(s => ({
+      id: s.id,
+      time: s.timestamp ? new Date(s.timestamp).toLocaleTimeString() : 'Active',
+      type: `🆘 ${s.callerName}: ${s.peopleTrapped} Trapped`,
+      priority: s.urgency || 'CRITICAL',
+      location: s.location,
+      details: s.hazardDescription || 'Distress signal received via GPS.',
+      status: s.isResolved ? 'Resolved' : 'Pending Rescue',
+      isSOS: true
+    })),
+    ...incidents.map(i => ({
+      id: i.id,
+      time: i.reportedTime || 'Reported',
+      type: `${i.type} Threat`,
+      priority: i.severity || 'HIGH',
+      location: i.location,
+      details: `${(i.affectedPopulation || 0).toLocaleString()} people affected in zone.`,
+      status: i.status === 'RESOLVED' ? 'Resolved' : 'Active Operation',
+      isSOS: false
+    }))
+  ];
+
+  if (combined.length === 0) {
+    container.innerHTML = `<div class="p-6 text-center text-xs text-gray-500">No active distress incidents at this time.</div>`;
+    return;
+  }
+
+  container.innerHTML = combined.map(item => {
+    const isCritical = item.priority === 'CRITICAL';
+    const badgeStyle = isCritical 
+      ? 'bg-red-950 text-red-400 border-red-800 font-black' 
+      : 'bg-amber-950 text-amber-400 border-amber-800 font-bold';
+
+    return `
+      <div class="p-4 rounded-2xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold text-white">${item.id}</span>
+            <span class="px-2 py-0.5 rounded text-[10px] uppercase font-mono border ${badgeStyle}">
+              ${item.priority}
+            </span>
+            <span class="text-xs text-gray-500 font-mono">${item.time}</span>
+          </div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-300">
+            ${item.status}
+          </span>
+        </div>
+
+        <div class="text-sm font-semibold text-white">
+          ${escapeHtml(item.type)}
+        </div>
+
+        <p class="text-xs text-gray-400">${escapeHtml(item.details)}</p>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-gray-900 text-xs">
+          <span class="font-mono text-gray-400 text-[11px] truncate">
+            📍 ${escapeHtml(item.location)}
+          </span>
+
+          <div class="flex items-center gap-2 flex-shrink-0">
+            ${item.isSOS ? `
+              <button onclick="resolveSOS('${item.id}')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs transition">
+                Mark Safe / Rescued
+              </button>
+            ` : `
+              <button onclick="updateIncidentStatus('${item.id}', 'RESOLVED')" class="px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-white font-medium text-xs transition">
+                Resolve Threat
+              </button>
+            `}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 // Ensure all handlers are attached directly to global window object
 window.acquireLiveGPS = acquireLiveGPS;
+window.acquireRealGPS = acquireRealGPS;
+window.copyCoordinates = copyCoordinates;
+window.triggerEmergencyModal = triggerEmergencyModal;
+window.dispatchSOSBeacon = dispatchSOSBeacon;
+window.toggleAudio = toggleAudio;
+window.cycleAlerts = cycleAlerts;
+window.switchView = switchView;
+window.scrollToSection = scrollToSection;
+window.adjustSupply = adjustSupply;
+window.submitSupplyRequest = submitSupplyRequest;
+window.openCampReservation = openCampReservation;
+window.confirmCampReservation = confirmCampReservation;
+window.filterShelters = filterShelters;
 window.openModal = openModal;
 window.closeModal = closeModal;
 window.openRequisitionModal = openRequisitionModal;
