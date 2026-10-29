@@ -2,20 +2,20 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DRMS | Centralized Disaster Relief & Satellite Rescue System</title>
-  <meta name="description" content="Secured Real-Time Enterprise Disaster Relief Management System featuring live GPS & satellite casualty geolocation, incident tracking, stranded citizen supplies portal, shelter allocation, casualty triage, aid supply logistics, and emergency SOS dispatch." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>WARM HANDS | Disaster Relief & Live Emergency Network</title>
+  <meta name="description" content="WARM HANDS Disaster Relief Management System featuring live GPS & satellite casualty geolocation, interactive disaster map, shelter allocation, live SOS dispatch, and stranded citizen supplies." />
   
   <!-- Official Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png?v=2" />
   <link rel="shortcut icon" href="/favicon.png?v=2" />
   
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS v4 CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,22 +28,32 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            relief: {
-              950: '#060a12',
-              900: '#0c1220',
-              850: '#11192e',
-              800: '#17223b',
-              700: '#233256',
-              cyan: '#06b6d4',
-              red: '#ef4444',
-              amber: '#f59e0b',
-              emerald: '#10b981',
-              purple: '#8b5cf6',
+            brand: {
+              blue: '#0284c7',
+              sky: '#38bdf8',
+              navy: '#0b1120',
+            },
+            crisis: {
+              red: '#EF4444',
+              redDark: '#991B1B',
+              amber: '#F59E0B',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+              navy: '#0B1120',
+              card: '#111827',
+              border: '#1F2937'
             }
           },
           animation: {
-            'radar-spin': 'spin 4s linear infinite',
-            'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'ping-slow': 'ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite',
+            'radar': 'radar 3s linear infinite',
+          },
+          keyframes: {
+            radar: {
+              '0%': { transform: 'scale(0.8)', opacity: '1' },
+              '100%': { transform: 'scale(2.4)', opacity: '0' },
+            }
           }
         }
       }
@@ -57,792 +67,742 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="/css/style.css" />
 </head>
-<body class="bg-relief-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-black">
+<body class="min-h-screen flex flex-col emergency-grid selection:bg-cyan-500 selection:text-black">
 
   <!-- =========================================================================
-       TOP GLOBAL HEADER & NAVIGATION BAR
+       1. TOP APP BAR (WARM HANDS BRAND & DIRECT ACCESS CONTROLS - NO LOGIN PAGES)
        ========================================================================= -->
-  <header class="sticky top-0 z-50 bg-relief-900/95 backdrop-blur-xl border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4">
-      
-      <!-- Brand Identity -->
-      <a href="#" class="flex items-center gap-2 sm:gap-3 group" onclick="toggleViewMode('landing')">
-        <div class="relative flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-slate-900 border border-cyan-500/30 shadow-lg shadow-cyan-500/20 overflow-hidden p-1">
-          <img src="/logo.png" alt="DRMS Logo" class="w-full h-full object-contain filter drop-shadow" />
-        </div>
-        <div>
-          <div class="flex items-center gap-1.5 sm:gap-2">
-            <span class="font-heading font-extrabold text-base sm:text-xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400">DRMS RESCUE</span>
-            <span class="px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold tracking-wider uppercase rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">SAT-LINK</span>
+  <header class="sticky top-0 z-40 bg-[#090E1A]/95 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
+        
+        <!-- Brand Identity: WARM HANDS -->
+        <a href="#hero-section" class="flex items-center gap-2.5 sm:gap-3 group">
+          <div class="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-950 p-1.5 transition-transform group-hover:scale-105">
+            <!-- Warm Hands Icon -->
+            <svg class="w-full h-full text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
           </div>
-          <p class="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-cyan-400 flex items-center gap-1 sm:gap-1.5">
-            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse"></span> GPS ACTIVE
-          </p>
-        </div>
-      </a>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-heading font-black tracking-tight text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-300">
+                WARM<span class="text-white">HANDS</span>
+              </span>
+              <span class="text-[9px] sm:text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-950/90 text-cyan-300 border border-cyan-800/60 hidden sm:inline-block">
+                DRMS RESCUE
+              </span>
+            </div>
+            <p class="text-[10px] sm:text-[11px] text-gray-400 font-mono hidden sm:block">
+              Disaster Relief & Satellite Lifeline • <span class="text-emerald-400 font-medium">GPS Active</span>
+            </p>
+          </div>
+        </a>
 
-      <!-- Quick Action Navigation Controls -->
-      <div class="flex items-center gap-1.5 sm:gap-3">
-        <!-- Live Cloud DB Sync Indicator -->
-        <div id="live-sync-indicator" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-emerald-500/30 text-[11px] font-mono font-medium text-emerald-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>LIVE SYNC</span>
-          <span id="last-sync-time" class="text-slate-400 text-[10px] ml-1">00:00:00</span>
+        <!-- Top Navigation Links (Smooth Section Scrolling) -->
+        <nav class="hidden lg:flex items-center gap-6 text-xs sm:text-sm font-semibold text-gray-300 tracking-wide uppercase">
+          <a href="#hero-section" class="hover:text-cyan-400 transition">HOME</a>
+          <a href="#news-section" class="hover:text-cyan-400 transition">NEWS / UPDATES</a>
+          <a href="#map-section" class="hover:text-cyan-400 transition">MAP</a>
+          <a href="#sheltersSection" class="hover:text-cyan-400 transition">RELIEF CAMPS</a>
+          <a href="#suppliesSection" class="hover:text-cyan-400 transition">SUPPLIES</a>
+          <a href="#operations-section" class="hover:text-cyan-400 transition">OPERATIONS</a>
+        </nav>
+
+        <!-- Center: Live System Status / Clock -->
+        <div class="hidden xl:flex items-center gap-3 bg-gray-900/80 px-3.5 py-1.5 rounded-full border border-gray-800 text-xs font-mono">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-gray-300">SYNC LIVE</span>
+          </div>
+          <span class="text-gray-600">|</span>
+          <span id="liveClock" class="text-cyan-400 font-semibold tracking-wider">11:25:00 PM</span>
         </div>
 
-        <!-- View Toggle Buttons: Desktop & Tablet -->
-        <div class="flex p-1 bg-relief-850 rounded-xl border border-slate-800 text-[11px] sm:text-xs font-semibold">
-          <button id="btn-view-landing" class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-white bg-blue-600 shadow-md" onclick="toggleViewMode('landing')">
-            <span class="hidden sm:inline">🌐 Citizen Portal</span>
-            <span class="sm:hidden">🌐 Portal</span>
+        <!-- Direct Actions Right: Citizen/HQ Mode + Sound + SOS Quick Button -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          
+          <!-- Sound Toggle Button -->
+          <button id="soundToggleBtn" onclick="toggleAudio()" title="Sound Alerts On/Off" class="p-2 sm:p-2.5 rounded-xl bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition">
+            <svg id="soundIconOn" class="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            <svg id="soundIconOff" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+            </svg>
           </button>
-          <button id="btn-view-dashboard" class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-slate-400 hover:text-white" onclick="toggleViewMode('dashboard')">
-            <span class="hidden sm:inline">📊 Mission Control HQ</span>
-            <span class="sm:hidden">📊 HQ</span>
+
+          <!-- Citizen vs HQ Mode Switcher (Seamless Direct Access) -->
+          <div class="flex p-0.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold">
+            <button id="viewCitizenBtn" onclick="switchView('citizen')" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-medium shadow-sm transition">
+              Citizen
+            </button>
+            <button id="viewHQBtn" onclick="switchView('hq')" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-gray-400 hover:text-white transition flex items-center gap-1">
+              <span>HQ Ops</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            </button>
+          </div>
+
+          <!-- Quick Urgent SOS Button -->
+          <button onclick="triggerEmergencyModal()" class="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider glow-red transition-all transform active:scale-95 shadow-lg shadow-red-950">
+            <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <span>SOS</span>
           </button>
+
         </div>
+      </div>
+    </div>
 
-        <!-- Emergency Fast GPS SOS Trigger -->
-        <button onclick="openModal('modal-sos')" class="flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-red-600/40 transition-all hover:scale-[1.02] active:scale-[0.98]">
-          <span class="animate-bounce">🆘</span>
-          <span class="hidden sm:inline">SOS DISTRESS</span>
-          <span class="sm:hidden">SOS</span>
-        </button>
-
-        <!-- Role Badge & Switcher -->
-        <div class="flex items-center gap-1 sm:gap-2 pl-1 sm:pl-2 border-l border-slate-800">
-          <button onclick="openModal('modal-auth')" class="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-relief-800 hover:bg-relief-700 border border-slate-700/80 text-[11px] sm:text-xs font-medium text-slate-300 transition-colors">
-            <span id="user-display-name" class="font-semibold text-white hidden md:inline">Commander Arthur</span>
-            <span id="user-role-pill" class="px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-bold rounded-full bg-red-500/20 text-red-300 border border-red-500/30 uppercase">Admin</span>
+    <!-- LIVE EMERGENCY BROADCAST BANNER & TICKER -->
+    <div id="news-section" class="bg-gradient-to-r from-red-950/85 via-red-900/70 to-red-950/85 border-t border-b border-red-800/60 text-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-3 overflow-hidden">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="flex-shrink-0 px-2.5 py-0.5 rounded bg-red-600 text-white font-black tracking-wider text-[10px] uppercase animate-pulse">
+            CRITICAL BROADCAST
+          </span>
+          <div id="broadcastTicker" class="truncate font-medium text-red-100 text-xs sm:text-sm">
+            ⚠️ EVACUATION NOTICE: Sector 4 River Basin water levels reached Stage 3. Safe shelter open at Civic Stadium with 350 emergency cots ready.
+          </div>
+        </div>
+        <div class="flex-shrink-0 flex items-center gap-3">
+          <button onclick="cycleAlerts()" class="text-xs text-red-300 hover:text-white underline font-mono">
+            Next Alert ❯
           </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Live Threat Bulletin Ticker -->
-  <div class="bg-relief-900 border-b border-slate-800/80 px-4 py-2 flex items-center gap-3 overflow-hidden text-xs font-mono">
-    <div class="px-2.5 py-0.5 rounded bg-red-600 text-white font-extrabold tracking-wider text-[10px] uppercase flex-shrink-0 animate-pulse">
-      EMERGENCY BROADCAST
+  <!-- =========================================================================
+       2. HERO SECTION (EXACT REFERENCE DESIGN WITH hero-bg.jpg & DIRECT ACTION PILLS)
+       ========================================================================= -->
+  <section id="hero-section" class="relative min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-slate-950">
+    <!-- Atmospheric Rescue Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105" style="background-image: url('/hero-bg.jpg');"></div>
+    <!-- Vignette & Gradient Overlays for High Contrast Readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/40"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
+      <div class="max-w-3xl space-y-6">
+        
+        <!-- Satellite Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/40 text-cyan-300 text-xs font-semibold tracking-wide shadow-lg">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>Live GNSS Rescue Mesh & Immediate Humanitarian Relief</span>
+        </div>
+
+        <!-- Hero Headline Matching Reference Mockup -->
+        <h1 class="font-heading font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white leading-[1.1] drop-shadow-xl">
+          Welcome to <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-sky-300">
+            Disaster Management System
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-slate-200 text-base sm:text-lg md:text-xl font-normal max-w-2xl leading-relaxed drop-shadow-md">
+          Immediate relief coordination for flood casualties and stranded families. Find active shelters, track emergency supply drones, and transmit GPS distress calls directly to search boats.
+        </p>
+
+        <!-- CTA Action Buttons (Matching Mockup Pill Style) -->
+        <div class="pt-4 flex flex-wrap items-center gap-4">
+          <a href="#news-section" class="px-7 py-3.5 rounded-2xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-sky-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center">
+            Latest Updates
+          </a>
+          <a href="#map-section" class="px-7 py-3.5 rounded-2xl bg-white/95 hover:bg-white text-slate-950 font-extrabold text-sm sm:text-base tracking-wide shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-slate-300 text-center">
+            Disaster Map
+          </a>
+          <button onclick="triggerEmergencyModal()" class="px-6 py-3.5 rounded-2xl bg-red-600/90 hover:bg-red-500 text-white font-extrabold text-sm sm:text-base tracking-wide shadow-xl shadow-red-600/30 transition-all border border-red-400/40 flex items-center gap-2">
+            <span>🆘</span>
+            <span>Emergency SOS</span>
+          </button>
+        </div>
+
+      </div>
     </div>
-    <div id="ticker-text" class="text-slate-300 truncate">
-      [INC-101] Sector 4 River Valley Flood: 1,200 affected | [CAMP-201] Civic Arena: 142/500 beds | [GPS TELEMETRY] Real-time satellite locating active for stranded victims
-    </div>
-  </div>
+  </section>
 
   <!-- =========================================================================
-       MAIN CONTENT CONTAINER (SWITCHES BETWEEN LANDING & COMMAND DASHBOARD)
+       3. MAIN WORKFLOW & INTERACTIVE SECTIONS
        ========================================================================= -->
-  <div class="flex-1 flex flex-col">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
-    <!-- ***********************************************************************
-         SECTION A: MODERN INTERACTIVE LANDING PAGE
-         *********************************************************************** -->
-    <section id="view-landing" class="block w-full">
+    <!-- =======================================================================
+         A. CITIZEN VIEW (DEFAULT & DIRECTLY ACCESSIBLE)
+         ======================================================================= -->
+    <div id="citizenViewSection" class="space-y-10">
 
-      <!-- 1. STREAMLINED HERO & CITIZEN ACTION CENTER -->
-      <div class="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-20 bg-gradient-to-b from-relief-900/90 via-relief-950 to-relief-950">
-        <!-- Ambient Glow -->
-        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- 1. LIVE TELEMETRY & GPS FIX CARD -->
+      <section class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-gray-900/90 to-[#0C1322] border border-gray-800 shadow-2xl p-6 sm:p-8">
+        <div class="absolute -top-24 -left-24 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
           
-          <!-- Top Badge & Hero Headline -->
-          <div class="text-center max-w-3xl mx-auto mb-10">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-relief-800 border border-cyan-500/30 text-cyan-300 text-xs font-medium mb-5 shadow-lg shadow-cyan-500/10">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              <span>Emergency Humanitarian Satellite & Rescue Network</span>
+          <div class="max-w-xl text-center lg:text-left space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/80 text-cyan-300 text-xs font-semibold tracking-wide">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              Emergency Humanitarian Lifeline
             </div>
-
-            <h1 class="font-heading font-black text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-tight mb-4">
-              Disaster Relief & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">Live Rescue Portal</span>
-            </h1>
-
-            <p class="text-slate-300 text-base sm:text-lg font-normal leading-relaxed">
-              Lock your live satellite GPS coordinates, requisition survival supplies (choose what you need vs. don't need), and transmit emergency distress alerts directly to first responders.
+            <h2 class="text-3xl sm:text-4xl font-heading font-black text-white tracking-tight leading-tight">
+              Are You in Immediate <br class="hidden sm:inline" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-300 to-amber-300">
+                Danger or Need Rescue?
+              </span>
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+              Lock your exact location and transmit distress beacons directly to nearby military, drone, and first responder search boats. Works even on low bandwidth networks.
             </p>
-          </div>
 
-          <!-- Quick Telemetry & GPS Satellite Card -->
-          <div class="p-6 sm:p-8 rounded-3xl bg-relief-900/90 border border-cyan-500/30 shadow-2xl backdrop-blur-md mb-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-              
-              <div class="max-w-xl">
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                  <span class="text-xs font-mono font-bold tracking-wider text-cyan-400 uppercase">Satellite GNSS / GPS Telemetry</span>
-                </div>
-                <h2 class="text-2xl font-heading font-extrabold text-white mb-2">
-                  Instant Geolocation & Beacon Lock
-                </h2>
-                <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                  Locking your GPS allows rescue teams and drone delivery systems to pin your exact physical location with high accuracy.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                  <button onclick="acquireLiveGPS(true)" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-cyan-500/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
-                    <span>🛰️</span>
-                    <span>Acquire My Live GPS</span>
-                  </button>
-                  <button onclick="openModal('modal-sos')" class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-red-600/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
-                    <span>🆘</span>
-                    <span>Emergency SOS</span>
-                  </button>
-                  <button onclick="openRequisitionModal()" class="px-5 py-2.5 rounded-xl bg-relief-800 hover:bg-relief-700 text-white border border-slate-700 font-bold text-sm tracking-wide flex items-center gap-2 transition-all">
-                    <span>📦</span>
-                    <span>Request Supplies</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Compact Live Readout Box -->
-              <div class="w-full lg:w-80 p-4 rounded-2xl bg-relief-950 border border-slate-800 font-mono text-xs text-slate-300 flex flex-col gap-2.5 shadow-inner">
-                <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <span class="text-slate-400 font-bold uppercase text-[11px]">GNSS Satellite Lock</span>
-                  <span id="gps-lock-status" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">LOCK READY</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">LAT / LNG:</span>
-                  <span class="text-cyan-300 font-bold"><span id="telemetry-lat">13.0827° N</span>, <span id="telemetry-lng">80.2707° E</span></span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">ACCURACY:</span>
-                  <span id="telemetry-acc" class="text-emerald-400 font-bold">± 4.8 meters</span>
-                </div>
-                <div class="pt-2 border-t border-slate-800 text-[11px] text-slate-400 truncate">
-                  <span class="text-cyan-400">Zone:</span> <span id="telemetry-address">River Valley Sector 4, Chennai Basin</span>
-                </div>
-              </div>
-
+            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <button onclick="scrollToSection('sheltersSection')" class="px-4 py-2.5 rounded-xl bg-gray-800/90 hover:bg-gray-700 border border-gray-700 text-gray-200 text-xs font-semibold flex items-center gap-2 transition">
+                <span>🏕️</span> Find Safe Shelters Nearby
+              </button>
+              <button onclick="scrollToSection('suppliesSection')" class="px-4 py-2.5 rounded-xl bg-gray-800/90 hover:bg-gray-700 border border-gray-700 text-gray-200 text-xs font-semibold flex items-center gap-2 transition">
+                <span>📦</span> Requisition Food & Medicine
+              </button>
+              <button onclick="scrollToSection('map-section')" class="px-4 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-semibold flex items-center gap-2 transition">
+                <span>🗺️</span> View Interactive Map
+              </button>
             </div>
           </div>
 
-          <!-- 3 Primary Action Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <!-- SOS Giant Button & GPS Satellite Status Pod -->
+          <div class="w-full lg:w-auto flex flex-col items-center gap-4">
             
-            <!-- 1: Supplies Requisition -->
-            <div class="p-6 rounded-3xl bg-relief-900 border border-slate-800 hover:border-cyan-500/40 transition-all group flex flex-col justify-between">
-              <div>
-                <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                  📦
-                </div>
-                <h3 class="text-xl font-heading font-bold text-white mb-2">Relief Supplies</h3>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                  Declare exactly what your family needs (Food, water, medicine, hygiene) and what you already have to prevent aid wastage.
-                </p>
+            <button id="mainSosButton" onclick="triggerEmergencyModal()" class="group relative w-full sm:w-80 h-32 sm:h-36 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold flex flex-col items-center justify-center gap-1.5 shadow-2xl glow-red border border-red-400/40 transform active:scale-95 transition-all">
+              <div class="flex items-center gap-2.5">
+                <span class="relative flex h-5 w-5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+                  <span class="relative inline-flex rounded-full h-5 w-5 bg-white text-red-600 font-black text-xs items-center justify-center">!</span>
+                </span>
+                <span class="text-2xl sm:text-3xl tracking-wider uppercase font-black">TRANSMIT SOS</span>
               </div>
-              <button onclick="openRequisitionModal()" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
-                Request Supplies
-              </button>
-            </div>
-
-            <!-- 2: Shelters & Evacuees -->
-            <div class="p-6 rounded-3xl bg-relief-900 border border-slate-800 hover:border-amber-500/40 transition-all group flex flex-col justify-between">
-              <div>
-                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                  🏕️
-                </div>
-                <h3 class="text-xl font-heading font-bold text-white mb-2">Safe Shelters & Camps</h3>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                  View open relief shelters with real-time bed capacity and search the Missing Person Registry for evacuated relatives.
-                </p>
+              <span class="text-xs font-medium text-red-100 tracking-wide">
+                Tap to Alert All Responders • 1-Touch Callout
+              </span>
+              <div class="text-[10px] bg-red-950/60 px-2.5 py-0.5 rounded-full border border-red-700/50 mt-1 font-mono text-red-200">
+                Avg Response: 4.8 Mins
               </div>
-              <button onclick="toggleViewMode('dashboard'); switchTab('camps');" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
-                Find Safe Shelters
-              </button>
-            </div>
+            </button>
 
-            <!-- 3: Mission Control HQ -->
-            <div class="p-6 rounded-3xl bg-relief-900 border border-slate-800 hover:border-blue-500/40 transition-all group flex flex-col justify-between">
-              <div>
-                <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                  📊
-                </div>
-                <h3 class="text-xl font-heading font-bold text-white mb-2">Command Center</h3>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                  Interactive disaster map, warehouse inventory logistics, volunteer deployment, and live rescue operations.
-                </p>
+            <!-- GPS TELEMETRY STATUS -->
+            <div class="w-full sm:w-80 p-3.5 rounded-2xl bg-gray-900/90 border border-gray-800 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-gray-400 uppercase text-[11px] font-semibold flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                  </svg>
+                  GPS Coordinates
+                </span>
+                <span id="gpsStatusBadge" class="px-2 py-0.5 rounded bg-amber-950/80 text-amber-400 border border-amber-800 text-[10px] font-mono">
+                  Standard GPS
+                </span>
               </div>
-              <button onclick="toggleViewMode('dashboard')" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
-                Open Command HQ
-              </button>
+
+              <div class="p-2.5 rounded-xl bg-black/50 border border-gray-800/80 font-mono text-xs flex items-center justify-between">
+                <div>
+                  <div class="text-gray-400 text-[10px]">CURRENT FIX</div>
+                  <div id="coordsDisplay" class="text-cyan-300 font-bold">13.0827° N, 80.2707° E</div>
+                  <div id="accuracyDisplay" class="text-[10px] text-gray-500">Sector 4 Basin • Acc: ±4.8m</div>
+                </div>
+                <button onclick="acquireRealGPS()" title="Refresh GPS" class="p-2 rounded-lg bg-gray-800 hover:bg-cyan-600 text-gray-200 hover:text-white transition">
+                  <svg id="gpsIconSpin" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between text-[11px] pt-1">
+                <button onclick="copyCoordinates()" class="text-gray-400 hover:text-cyan-300 flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                  Copy Coordinates
+                </button>
+                <span class="text-emerald-400 font-mono font-medium">9 Sats Locked</span>
+              </div>
             </div>
 
-          </div>
-
-          <!-- Quick Telemetry Numbers -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="p-4 rounded-2xl bg-relief-900/60 border border-slate-800/80 text-center">
-              <div class="text-2xl font-heading font-black text-red-400" id="hero-active-incidents">3</div>
-              <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider mt-0.5">Active Incidents</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-relief-900/60 border border-slate-800/80 text-center">
-              <div class="text-2xl font-heading font-black text-cyan-400" id="hero-shelter-beds">1,250</div>
-              <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider mt-0.5">Safe Camp Capacity</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-relief-900/60 border border-slate-800/80 text-center">
-              <div class="text-2xl font-heading font-black text-amber-400" id="hero-rescued-victims">4</div>
-              <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider mt-0.5">Admitted Evacuees</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-relief-900/60 border border-slate-800/80 text-center">
-              <div class="text-2xl font-heading font-black text-emerald-400" id="hero-relief-funds">$80,000</div>
-              <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider mt-0.5">Relief Aid Funds</div>
-            </div>
           </div>
 
         </div>
-      </div>
+      </section>
 
-    </section>
-
-    <!-- ***********************************************************************
-         SECTION B: FULL COMMAND HQ DASHBOARD
-         *********************************************************************** -->
-    <section id="view-dashboard" class="hidden w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-col gap-6">
-
-      <!-- Navigation Tabs -->
-      <nav class="flex items-center gap-2 p-1.5 bg-relief-900/80 backdrop-blur-md rounded-2xl border border-slate-800 overflow-x-auto text-xs sm:text-sm font-heading font-semibold">
-        <button class="nav-btn active px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-white bg-blue-600/30 border border-blue-500/40 shadow-lg shadow-blue-500/10" onclick="switchTab('dashboard')">
-          <span>📊</span> Situation Room
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('citizen-portal')">
-          <span>📦</span> Stranded Citizen Aid Portal
-          <span id="tab-badge-citizen-reqs" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">2</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('incidents')">
-          <span>⚡</span> Disaster Incidents
-          <span id="tab-badge-incidents" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-red-500/20 text-red-300 border border-red-500/30">3</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('camps')">
-          <span>🏕️</span> Relief Shelters
-          <span id="tab-badge-camps" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">3</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('victims')">
-          <span>👥</span> Evacuees & Missing Finder
-          <span id="tab-badge-victims" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">4</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('supplies')">
-          <span>📦</span> Aid Supply Warehouse
-          <span id="tab-badge-supplies" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">5</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('volunteers')">
-          <span>🦺</span> Volunteer Forces
-          <span id="tab-badge-volunteers" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">5</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('sos')">
-          <span>🚨</span> Emergency SOS Dispatch
-          <span id="tab-badge-sos" class="px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">2</span>
-        </button>
-        <button class="nav-btn px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 text-slate-400 hover:text-white" onclick="switchTab('donations')">
-          <span>💰</span> Aid Ledger
-        </button>
-      </nav>
-
-      <!-- TAB 1: SITUATION ROOM (DASHBOARD & INTERACTIVE MAP) -->
-      <div id="tab-dashboard" class="tab-view active">
-        <!-- Live Mission Control Telemetry Cards -->
-        <div class="metrics-grid">
-          <div class="metric-card red">
-            <div class="metric-header">
-              <span>Active Disasters</span>
-              <span>⚡</span>
-            </div>
-            <div class="metric-val" id="stat-active-incidents">0</div>
-            <div class="metric-sub">
-              <span>Impacted Area:</span> <strong id="stat-affected-pop">0</strong> souls
-            </div>
+      <!-- 2. LIVE METRICS & IMPACT TELEMETRY -->
+      <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-gray-900/70 border border-gray-800 hover:border-gray-700 transition">
+          <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
+            <span class="font-semibold uppercase tracking-wider">ACTIVE DISASTERS</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
           </div>
-
-          <div class="metric-card amber">
-            <div class="metric-header">
-              <span>Shelter Capacity</span>
-              <span>🏕️</span>
-            </div>
-            <div class="metric-val" id="stat-occupancy-rate">0%</div>
-            <div class="metric-sub">
-              <span id="stat-camp-headcount">0</span> / <span id="stat-camp-cap">0</span> beds filled
-            </div>
-          </div>
-
-          <div class="metric-card cyan">
-            <div class="metric-header">
-              <span>Evacuees Admitted</span>
-              <span>👥</span>
-            </div>
-            <div class="metric-val" id="stat-registered-victims">0</div>
-            <div class="metric-sub">
-              <span>Critical Triage:</span> <strong id="stat-critical-victims" class="text-rose-400">0</strong>
-            </div>
-          </div>
-
-          <div class="metric-card purple">
-            <div class="metric-header">
-              <span>Volunteer Forces</span>
-              <span>🦺</span>
-            </div>
-            <div class="metric-val" id="stat-available-volunteers">0 / 0</div>
-            <div class="metric-sub">
-              <span>Field Deployed:</span> <strong id="stat-deployed-volunteers">0</strong>
-            </div>
-          </div>
-
-          <div class="metric-card red">
-            <div class="metric-header">
-              <span>Pending SOS Calls</span>
-              <span>🚨</span>
-            </div>
-            <div class="metric-val text-red-400" id="stat-pending-sos">0</div>
-            <div class="metric-sub">
-              <span>Immediate Life Threat</span>
-            </div>
-          </div>
-
-          <div class="metric-card cyan">
-            <div class="metric-header">
-              <span>Citizen Requests</span>
-              <span>📦</span>
-            </div>
-            <div class="metric-val text-cyan-400" id="stat-pending-citizen-requests">0</div>
-            <div class="metric-sub">
-              <span>Awaiting Delivery / Dispatch</span>
-            </div>
-          </div>
-
-          <div class="metric-card emerald">
-            <div class="metric-header">
-              <span>Relief Aid Funds</span>
-              <span>💰</span>
-            </div>
-            <div class="metric-val text-emerald-400" id="stat-total-funds">$0</div>
-            <div class="metric-sub">
-              <span>Live Emergency Donations</span>
-            </div>
+          <div class="text-3xl font-black text-white font-mono" id="statRescues">3</div>
+          <div class="text-xs text-red-400 flex items-center gap-1 mt-1 font-medium">
+            <span>●</span> High urgency flood & tremor zones
           </div>
         </div>
 
-        <div class="dashboard-layout">
-          <!-- Interactive Disaster Zone Map -->
-          <div class="glass-panel">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>🗺️</span> Real-Time Geospatial Incident Map</h2>
-              <div class="map-legend">
-                <div class="legend-item"><span class="legend-dot red"></span> Disasters</div>
-                <div class="legend-item"><span class="legend-dot cyan"></span> Shelters & Camps</div>
-                <div class="legend-item"><span class="legend-dot purple"></span> Pending SOS / Requisitions</div>
-              </div>
-            </div>
-            <!-- Map Filter Toolbar -->
-            <div class="map-filter-bar flex items-center justify-between gap-2 p-2 mb-2 bg-slate-900/80 rounded-xl border border-slate-800 text-xs">
-              <div class="flex items-center gap-3">
-                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
-                  <input type="checkbox" id="layer-incidents" checked onchange="toggleMapLayer('incidents')" class="accent-red-500 rounded" />
-                  <span>Incidents</span>
-                </label>
-                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
-                  <input type="checkbox" id="layer-camps" checked onchange="toggleMapLayer('camps')" class="accent-cyan-500 rounded" />
-                  <span>Shelters</span>
-                </label>
-                <label class="flex items-center gap-1.5 cursor-pointer text-slate-300 hover:text-white">
-                  <input type="checkbox" id="layer-sos" checked onchange="toggleMapLayer('sos')" class="accent-purple-500 rounded" />
-                  <span>Distress SOS</span>
-                </label>
-              </div>
-              <button onclick="recenterMapOnUser()" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-[11px] font-semibold flex items-center gap-1 transition-all">
-                <span>🛰️</span> My GPS
-              </button>
-            </div>
-            <div id="disaster-map"></div>
+        <div class="p-5 rounded-2xl bg-gray-900/70 border border-gray-800 hover:border-gray-700 transition">
+          <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
+            <span class="font-semibold uppercase tracking-wider">SHELTER BED CAPACITY</span>
+            <span class="text-emerald-400 font-mono">Real-Time</span>
           </div>
-
-          <!-- High Priority Activity Feed -->
-          <div class="glass-panel">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>⚡</span> Real-Time Emergency Activity</h2>
-              <button class="btn-action secondary" onclick="refreshAllData()">↻ Refresh</button>
-            </div>
-            <div class="table-responsive" style="max-height: 480px; overflow-y: auto;">
-              <table class="custom-table">
-                <thead>
-                  <tr>
-                    <th>Event / ID</th>
-                    <th>Location</th>
-                    <th>Urgency / Status</th>
-                  </tr>
-                </thead>
-                <tbody id="table-recent-activity">
-                  <!-- Dynamically injected -->
-                </tbody>
-              </table>
-            </div>
+          <div class="text-3xl font-black text-white font-mono" id="statBeds">1,450</div>
+          <div class="text-xs text-emerald-400 flex items-center gap-1 mt-1 font-medium">
+            <span>●</span> Available across 4 camps
           </div>
         </div>
-      </div>
 
-      <!-- TAB 2: STRANDED CITIZEN AID PORTAL -->
-      <div id="tab-citizen-portal" class="tab-view">
-        <div class="citizen-portal-banner">
-          <div class="citizen-banner-text">
-            <h3><span>📦</span> Stranded Citizen Relief & Supplies Allocation Hub</h3>
-            <p>
-              Are you or your family stranded in a disaster zone? Choose exactly what supplies you <strong>need</strong> and mark items you <strong>already have</strong> so aid is allocated efficiently without wastage. Your package is routed to the nearest relief camp.
-            </p>
+        <div class="p-5 rounded-2xl bg-gray-900/70 border border-gray-800 hover:border-gray-700 transition">
+          <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
+            <span class="font-semibold uppercase tracking-wider">EVACUEES ADMITTED</span>
+            <span class="text-cyan-400 font-mono">Live</span>
           </div>
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <button class="btn-action success" onclick="openRequisitionModal()">
-              <span>+</span> Submit New Supply Requisition
+          <div class="text-3xl font-black text-white font-mono" id="statEvacuees">654</div>
+          <div class="text-xs text-cyan-400 flex items-center gap-1 mt-1 font-medium">
+            <span>●</span> Evacuated by boat & helicopter
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-gray-900/70 border border-gray-800 hover:border-gray-700 transition">
+          <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
+            <span class="font-semibold uppercase tracking-wider">RELIEF AID FUNDS</span>
+            <span class="text-amber-400 font-mono">Verified</span>
+          </div>
+          <div class="text-3xl font-black text-white font-mono" id="statSupplies">$80,000</div>
+          <div class="text-xs text-amber-400 flex items-center gap-1 mt-1 font-medium">
+            <span>●</span> Direct donor disaster ledger
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. INTERACTIVE DISASTER MAP SECTION -->
+      <section id="map-section" class="p-6 rounded-3xl bg-gray-900/80 border border-gray-800 space-y-4 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-gray-800">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🗺️</span>
+              <h3 class="text-xl font-heading font-black text-white">Geospatial Disaster & Relief Map</h3>
+            </div>
+            <p class="text-xs text-gray-400">Live coordinates of floods, safe relief camps, supply caches, and active distress signals.</p>
+          </div>
+
+          <!-- Map Layer Filter Toggles -->
+          <div class="flex items-center gap-3 bg-gray-950/80 px-3 py-1.5 rounded-xl border border-gray-800 text-xs">
+            <label class="flex items-center gap-1.5 cursor-pointer text-gray-300 hover:text-white">
+              <input type="checkbox" id="layer-incidents" checked onchange="toggleMapLayer('incidents')" class="accent-red-500 rounded" />
+              <span>Disasters</span>
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer text-gray-300 hover:text-white">
+              <input type="checkbox" id="layer-camps" checked onchange="toggleMapLayer('camps')" class="accent-cyan-500 rounded" />
+              <span>Camps</span>
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer text-gray-300 hover:text-white">
+              <input type="checkbox" id="layer-sos" checked onchange="toggleMapLayer('sos')" class="accent-purple-500 rounded" />
+              <span>SOS Signals</span>
+            </label>
+            <button onclick="recenterMapOnUser()" class="px-2.5 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-[11px] font-semibold flex items-center gap-1 transition">
+              <span>🛰️</span> My GPS
             </button>
           </div>
         </div>
 
-        <div class="glass-panel">
-          <div class="panel-title-bar">
-            <h2 class="panel-title"><span>🔍</span> Track My Relief Package Status</h2>
-          </div>
-          <div style="display: flex; gap: 0.75rem; align-items: center; max-width: 600px;">
-            <div class="search-input-group" style="flex: 1;">
-              <span>📱</span>
-              <input type="text" id="input-track-phone" placeholder="Enter contact phone number..." />
+        <div id="disaster-map" class="w-full h-[460px] sm:h-[520px] rounded-2xl overflow-hidden border border-gray-800 shadow-inner"></div>
+      </section>
+
+      <!-- 4. SAFE SHELTERS & SUPPLY REQUISITION (SPACIOUS 2-COL WORKFLOW) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- SHELTERS FINDER (7 COLS) -->
+        <section id="sheltersSection" class="lg:col-span-7 p-6 sm:p-7 rounded-3xl bg-gray-900/70 border border-gray-800 space-y-5 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-gray-800">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">🏕️</span>
+                <h3 class="text-xl font-heading font-black text-white">Safe Shelters & Camps Directory</h3>
+              </div>
+              <p class="text-xs text-gray-400">Updated in real-time from humanitarian sector directors.</p>
             </div>
-            <button class="btn-action" onclick="trackCitizenRequestByPhone()">Find My Request</button>
-            <button class="btn-action secondary" onclick="renderCitizenRequestsTable(appData.citizenRequests)">Show All</button>
-          </div>
-
-          <div id="citizen-tracking-result" style="display: none; margin-top: 1rem; padding: 1.25rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--accent-cyan); border-radius: var(--radius-md);"></div>
-        </div>
-
-        <div class="glass-panel">
-          <div class="panel-title-bar">
-            <h2 class="panel-title"><span>📋</span> Active Citizen Relief Requisitions & Manifests</h2>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-              <select id="filter-citizen-status" onchange="filterCitizenRequests()" class="px-2.5 py-1 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
-                <option value="">All Statuses</option>
-                <option value="PENDING">Pending</option>
-                <option value="PACKED">Packed</option>
-                <option value="IN_TRANSIT">In Transit</option>
-                <option value="DELIVERED">Delivered</option>
-              </select>
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('citizen-requests', 'csv')">
-                ⬇️ Export CSV
-              </button>
+            
+            <div class="flex items-center gap-1.5 overflow-x-auto text-xs">
+              <button onclick="filterShelters('all')" class="shelter-filter-btn px-3 py-1.5 rounded-lg bg-gray-800 text-white font-medium border border-gray-700">All</button>
+              <button onclick="filterShelters('medical')" class="shelter-filter-btn px-3 py-1.5 rounded-lg text-gray-400 hover:text-white border border-transparent">🏥 Med Bay</button>
+              <button onclick="filterShelters('pets')" class="shelter-filter-btn px-3 py-1.5 rounded-lg text-gray-400 hover:text-white border border-transparent">🐾 Pet Friendly</button>
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Req ID</th>
-                  <th>Citizen Name & Phone</th>
-                  <th>Stranded Location</th>
-                  <th>Allocated Camp</th>
-                  <th>Needed Items (Qty)</th>
-                  <th>Items NOT Needed / Surplus</th>
-                  <th>Status</th>
-                  <th>Fulfillment Action</th>
-                </tr>
-              </thead>
-              <tbody id="table-citizen-requests-body">
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+
+          <div id="shelterListContainer" class="space-y-4 max-h-[580px] overflow-y-auto pr-1">
+            <!-- Dynamically populated via JavaScript -->
           </div>
-        </div>
+        </section>
+
+        <!-- EMERGENCY SUPPLY REQUISITION (5 COLS) -->
+        <section id="suppliesSection" class="lg:col-span-5 p-6 sm:p-7 rounded-3xl bg-gray-900/70 border border-gray-800 space-y-5 flex flex-col justify-between shadow-xl">
+          <div class="space-y-4">
+            <div class="pb-2 border-b border-gray-800">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">📦</span>
+                <h3 class="text-xl font-heading font-black text-white">Requisition Relief Supplies</h3>
+              </div>
+              <p class="text-xs text-gray-400">Request only what you need to ensure supplies reach everyone.</p>
+            </div>
+
+            <!-- Supply Check-counters -->
+            <div class="space-y-3 text-sm" id="supplyItemsContainer">
+              
+              <!-- Clean Water -->
+              <div class="p-3.5 rounded-2xl bg-gray-950/60 border border-gray-800/90 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-950/70 border border-blue-800 text-blue-400 flex items-center justify-center font-bold text-lg">💧</div>
+                  <div>
+                    <div class="font-semibold text-gray-200 text-xs sm:text-sm">Clean Drinking Water</div>
+                    <div class="text-[10px] text-gray-400">5-liter sealed emergency jugs</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="adjustSupply('water', -1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">-</button>
+                  <span id="supply-water" class="w-7 text-center font-mono font-bold text-cyan-400 text-base">2</span>
+                  <button onclick="adjustSupply('water', 1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">+</button>
+                </div>
+              </div>
+
+              <!-- Ready Food -->
+              <div class="p-3.5 rounded-2xl bg-gray-950/60 border border-gray-800/90 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-950/70 border border-amber-800 text-amber-400 flex items-center justify-center font-bold text-lg">🍞</div>
+                  <div>
+                    <div class="font-semibold text-gray-200 text-xs sm:text-sm">High-Calorie Rations</div>
+                    <div class="text-[10px] text-gray-400">Non-perishable meal packs</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="adjustSupply('food', -1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">-</button>
+                  <span id="supply-food" class="w-7 text-center font-mono font-bold text-amber-400 text-base">4</span>
+                  <button onclick="adjustSupply('food', 1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">+</button>
+                </div>
+              </div>
+
+              <!-- First Aid Kit -->
+              <div class="p-3.5 rounded-2xl bg-gray-950/60 border border-gray-800/90 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-red-950/70 border border-red-800 text-red-400 flex items-center justify-center font-bold text-lg">🩹</div>
+                  <div>
+                    <div class="font-semibold text-gray-200 text-xs sm:text-sm">Trauma & First Aid Kit</div>
+                    <div class="text-[10px] text-gray-400">Antiseptic, bandages, dressings</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="adjustSupply('med', -1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">-</button>
+                  <span id="supply-med" class="w-7 text-center font-mono font-bold text-red-400 text-base">1</span>
+                  <button onclick="adjustSupply('med', 1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">+</button>
+                </div>
+              </div>
+
+              <!-- Infant Care -->
+              <div class="p-3.5 rounded-2xl bg-gray-950/60 border border-gray-800/90 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-purple-950/70 border border-purple-800 text-purple-400 flex items-center justify-center font-bold text-lg">🍼</div>
+                  <div>
+                    <div class="font-semibold text-gray-200 text-xs sm:text-sm">Infant Nutrition & Diapers</div>
+                    <div class="text-[10px] text-gray-400">Formula milk & baby sanitation</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="adjustSupply('baby', -1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">-</button>
+                  <span id="supply-baby" class="w-7 text-center font-mono font-bold text-purple-400 text-base">0</span>
+                  <button onclick="adjustSupply('baby', 1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">+</button>
+                </div>
+              </div>
+
+              <!-- Thermal Blankets -->
+              <div class="p-3.5 rounded-2xl bg-gray-950/60 border border-gray-800/90 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-950/70 border border-emerald-800 text-emerald-400 flex items-center justify-center font-bold text-lg">⛺</div>
+                  <div>
+                    <div class="font-semibold text-gray-200 text-xs sm:text-sm">Thermal Foil Blankets & Tarp</div>
+                    <div class="text-[10px] text-gray-400">Hypothermia & rain protection</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="adjustSupply('tarp', -1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">-</button>
+                  <span id="supply-tarp" class="w-7 text-center font-mono font-bold text-emerald-400 text-base">2</span>
+                  <button onclick="adjustSupply('tarp', 1)" class="w-8 h-8 rounded-lg bg-gray-800 text-white font-bold hover:bg-gray-700 flex items-center justify-center transition">+</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Order Summary & Dispatch Trigger -->
+          <div class="pt-4 border-t border-gray-800 space-y-3">
+            <div class="flex items-center justify-between text-xs text-gray-400">
+              <span>Drop Method: <strong class="text-cyan-400">Autonomous Rescue Drone</strong></span>
+              <span>Estimated Delivery: <strong class="text-white">~35 mins</strong></span>
+            </div>
+            
+            <button onclick="submitSupplyRequest()" class="w-full py-3.5 rounded-2xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-sm tracking-wide shadow-lg shadow-cyan-950/60 glow-cyan transition active:scale-98 flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <span>Dispatch Supplies to My GPS Fix</span>
+            </button>
+
+            <button onclick="openRequisitionModal()" class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold transition">
+              Open Full Requisition Form (Need vs Surplus Declaration)
+            </button>
+          </div>
+        </section>
+
       </div>
 
-      <!-- TAB 3: DISASTER INCIDENTS -->
-      <div id="tab-incidents" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>⚡</span> Disaster Incidents & Threat Zones</h2>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <select id="filter-incident-severity" onchange="filterIncidents()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
-                <option value="">All Severities</option>
-                <option value="CRITICAL">Critical</option>
-                <option value="HIGH">High</option>
-                <option value="MEDIUM">Medium</option>
-                <option value="LOW">Low</option>
-              </select>
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('incidents', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button id="btn-new-incident" class="btn-action danger" onclick="openModal('modal-incident')">
-                <span>+</span> Register New Incident
-              </button>
-            </div>
+    </div>
+
+    <!-- =======================================================================
+         B. RESPONDER & MISSION CONTROL HQ OPERATIONS (DIRECT ACCESS, NO LOGIN WALL)
+         ======================================================================= -->
+    <div id="hqViewSection" class="hidden space-y-8">
+
+      <!-- COMMAND HEADER BAR -->
+      <section id="operations-section" class="p-6 sm:p-8 rounded-3xl bg-gray-900 border border-gray-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 text-xs font-mono font-bold">
+              HQ OPERATIONS CONSOLE
+            </span>
+            <span class="text-gray-400 text-xs font-mono">Sector: River Basin East (Zone 4)</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading font-black text-white mt-1">Live Incident Triage & Unit Dispatch</h2>
+          <p class="text-xs sm:text-sm text-gray-400">Direct interface for commanders, boat teams, shelter leads, and supply pilots.</p>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs">
+          <button onclick="filterIncidents('all')" class="inc-tab px-3.5 py-2 rounded-xl bg-gray-800 text-white border border-gray-700 font-semibold">All</button>
+          <button onclick="filterIncidents('critical')" class="inc-tab px-3.5 py-2 rounded-xl text-red-400 hover:bg-gray-800/80 border border-transparent font-semibold">🚨 Critical SOS</button>
+          <button onclick="filterIncidents('in_progress')" class="inc-tab px-3.5 py-2 rounded-xl text-amber-400 hover:bg-gray-800/80 border border-transparent font-semibold">🚤 Dispatched</button>
+          <button onclick="openModal('modal-incident')" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold transition flex items-center gap-1.5">
+            <span>+</span> Log Incident
+          </button>
+        </div>
+      </section>
+
+      <!-- INCIDENTS QUEUE & RADAR STATUS -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- INCIDENT FEED (8 COLS) -->
+        <div class="lg:col-span-8 p-6 sm:p-7 rounded-3xl bg-gray-900/80 border border-gray-800 space-y-4 shadow-xl">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-800">
+            <h3 class="font-heading font-bold text-white text-base sm:text-lg flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+              Live Distress Beacon & Incident Queue
+            </h3>
+            <span class="text-xs text-gray-400 font-mono">Auto-refreshes every 4s</span>
           </div>
 
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Disaster Type</th>
-                  <th>Location / Zone</th>
-                  <th>Severity</th>
-                  <th>Affected Pop.</th>
-                  <th>Reported Time</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="table-incidents-body"></tbody>
-            </table>
+          <div id="incidentsContainer" class="space-y-3.5 max-h-[640px] overflow-y-auto pr-1">
+            <!-- Populated via JavaScript -->
           </div>
         </div>
-      </div>
 
-      <!-- TAB 4: RELIEF CAMPS -->
-      <div id="tab-camps" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>🏕️</span> Relief Shelters & Capacity Management</h2>
+        <!-- TACTICAL OVERVIEW / FLEET STATUS (4 COLS) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Dispatch Fleet Status -->
+          <div class="p-5 sm:p-6 rounded-3xl bg-gray-900/80 border border-gray-800 space-y-4 shadow-xl">
+            <h4 class="font-bold text-white text-sm flex items-center justify-between">
+              <span>Rescue Fleet Units</span>
+              <span class="text-[11px] font-mono text-emerald-400">8 Units On-Call</span>
+            </h4>
+            
+            <div class="space-y-3 text-xs">
+              <div class="p-3 rounded-xl bg-black/40 border border-gray-800 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-gray-200">Zodiac Rescue Boat 02</div>
+                  <div class="text-[10px] text-gray-400">Sector 4 Estuary • Crew of 4</div>
+                </div>
+                <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-mono text-[10px] border border-emerald-800">EN ROUTE</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-black/40 border border-gray-800 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-gray-200">Amphibious ARV-09</div>
+                  <div class="text-[10px] text-gray-400">West Causeway • High Water Gear</div>
+                </div>
+                <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 font-mono text-[10px] border border-cyan-800">STANDBY</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-black/40 border border-gray-800 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-gray-200">Heavy Drop Drone D-4</div>
+                  <div class="text-[10px] text-gray-400">Payload: 20kg Med / Water</div>
+                </div>
+                <span class="px-2 py-0.5 rounded bg-purple-950 text-purple-300 font-mono text-[10px] border border-purple-800">AIRBORNE</span>
+              </div>
             </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('camps', 'csv')">
-                ⬇️ Export CSV
+
+            <div class="pt-2 flex gap-2">
+              <button onclick="openModal('modal-volunteer')" class="w-full py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs transition">
+                + Enlist Volunteer
               </button>
-              <button id="btn-new-camp" class="btn-action" onclick="openModal('modal-camp')">
-                <span>+</span> Establish New Relief Camp
+              <button onclick="openModal('modal-camp')" class="w-full py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition">
+                + Add Camp
               </button>
             </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Camp ID</th>
-                  <th>Camp Name</th>
-                  <th>Location</th>
-                  <th>Occupancy / Capacity</th>
-                  <th>Coordinator</th>
-                  <th>Contact</th>
-                  <th>Amenities</th>
-                </tr>
-              </thead>
-              <tbody id="table-camps-body"></tbody>
-            </table>
+          <!-- Radar Signal Simulation Widget -->
+          <div class="p-5 sm:p-6 rounded-3xl bg-gray-900/80 border border-gray-800 space-y-3 text-center shadow-xl">
+            <div class="text-xs font-bold text-gray-300 flex items-center justify-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              Emergency Grid Radar
+            </div>
+            
+            <div class="relative w-48 h-48 mx-auto my-2 rounded-full border border-cyan-800/60 bg-black/60 flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 rounded-full border border-cyan-900/40 m-6"></div>
+              <div class="absolute inset-0 rounded-full border border-cyan-900/40 m-14"></div>
+              <div class="absolute inset-x-0 top-1/2 h-px bg-cyan-900/30"></div>
+              <div class="absolute inset-y-0 left-1/2 w-px bg-cyan-900/30"></div>
+              <div class="absolute w-24 h-24 origin-bottom-right top-0 left-0 bg-gradient-to-br from-cyan-500/20 to-transparent animate-spin" style="animation-duration: 4s;"></div>
+              <div class="absolute top-12 left-16 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></div>
+              <div class="absolute top-12 left-16 w-2 h-2 rounded-full bg-red-500"></div>
+              <div class="absolute bottom-12 right-14 w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+              <div class="absolute top-24 right-10 w-2 h-2 rounded-full bg-amber-400"></div>
+            </div>
+
+            <p class="text-[11px] text-gray-400">
+              3 active emergency transponders transmitting in 5km radius.
+            </p>
           </div>
+
         </div>
+
       </div>
 
-      <!-- TAB 5: EVACUEES & MISSING FINDER -->
-      <div id="tab-victims" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="search-input-group">
-              <span>🔍</span>
-              <input type="text" id="input-victim-search" placeholder="Search missing persons by name, kin contact, or ID..." oninput="handleVictimSearch()" />
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('victims', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button id="btn-new-victim" class="btn-action success" onclick="openModal('modal-victim')">
-                <span>+</span> Admit Evacuee / Patient
-              </button>
-            </div>
-          </div>
+    </div>
 
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Victim ID</th>
-                  <th>Full Name</th>
-                  <th>Age / Gender</th>
-                  <th>Medical Triage</th>
-                  <th>Assigned Shelter</th>
-                  <th>Kin / Emergency Contact</th>
-                  <th>Special Needs</th>
-                </tr>
-              </thead>
-              <tbody id="table-victims-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 6: AID SUPPLIES -->
-      <div id="tab-supplies" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>📦</span> Humanitarian Aid Supplies & Warehouse Stock</h2>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <select id="filter-supply-stock" onchange="filterSupplies()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
-                <option value="">All Stock Levels</option>
-                <option value="LOW">Low Stock Alert (&le; Threshold)</option>
-                <option value="ADEQUATE">Adequate Stock</option>
-              </select>
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('supplies', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button class="btn-action secondary" onclick="openModal('modal-replenish-supply')">
-                <span>+</span> Inbound Stock Replenish
-              </button>
-              <button class="btn-action" onclick="openModal('modal-dispatch-supply')">
-                <span>🚀</span> Dispatch Stock to Camp
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Item Code</th>
-                  <th>Category</th>
-                  <th>Item Name</th>
-                  <th>Available Quantity</th>
-                  <th>Min Safety Threshold</th>
-                  <th>Warehouse Depot</th>
-                  <th>Stock Status</th>
-                </tr>
-              </thead>
-              <tbody id="table-supplies-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 7: VOLUNTEERS -->
-      <div id="tab-volunteers" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>🦺</span> Volunteer Personnel & First Responder Deployment</h2>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('volunteers', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button class="btn-action purple" style="background: var(--accent-purple);" onclick="openModal('modal-volunteer')">
-                <span>+</span> Enlist Volunteer
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Full Name</th>
-                  <th>Skill Specialization</th>
-                  <th>Contact Phone</th>
-                  <th>Status</th>
-                  <th>Deployment Location</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="table-volunteers-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 8: EMERGENCY SOS -->
-      <div id="tab-sos" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>🚨</span> Emergency SOS Distress Queue</h2>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <select id="filter-sos-status" onchange="filterSOS()" class="px-2.5 py-1.5 rounded-lg bg-relief-950 border border-slate-700 text-xs text-slate-300">
-                <option value="">All SOS Calls</option>
-                <option value="PENDING" selected>Pending Rescue</option>
-                <option value="RESOLVED">Rescued / Resolved</option>
-              </select>
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('sos', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button class="btn-action danger" onclick="openModal('modal-sos')">
-                <span>🆘</span> Transmit Emergency SOS
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>SOS ID</th>
-                  <th>Trapped Location & GPS</th>
-                  <th>Caller Name / Phone</th>
-                  <th>Trapped Count</th>
-                  <th>Urgency Level</th>
-                  <th>Distress Description</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="table-sos-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 9: AID DONATIONS -->
-      <div id="tab-donations" class="tab-view">
-        <div class="glass-panel">
-          <div class="filter-bar">
-            <div class="panel-title-bar">
-              <h2 class="panel-title"><span>💰</span> Humanitarian Aid & Donation Ledger</h2>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-              <button class="btn-action secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="exportData('donations', 'csv')">
-                ⬇️ Export CSV
-              </button>
-              <button class="btn-action success" onclick="openModal('modal-donation')">
-                <span>❤️</span> Make a Relief Donation
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Receipt ID</th>
-                  <th>Donor Organization / Individual</th>
-                  <th>Amount Contributed</th>
-                  <th>Designated Purpose</th>
-                  <th>Transaction Date</th>
-                  <th>Reference Hash</th>
-                </tr>
-              </thead>
-              <tbody id="table-donations-body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-  </div>
+  </main>
 
   <!-- =========================================================================
-       MODALS FOR USER INTERACTIONS
+       4. MODAL DIALOGS (EMERGENCY SOS, RESERVATIONS, REQUISITION & CAMP MGMT)
        ========================================================================= -->
 
-  <!-- 1. STRANDED CITIZEN CUSTOMIZED REQUISITION MODAL -->
+  <!-- A. EMERGENCY SOS MODAL DIALOG -->
+  <div id="sosModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-gray-900 border-2 border-red-600 shadow-2xl glow-red space-y-6">
+      
+      <button onclick="closeModal('sosModal')" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="text-center space-y-2">
+        <div class="inline-flex p-3 rounded-2xl bg-red-950/80 border border-red-700 text-red-400 mb-1">
+          <svg class="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-black text-white uppercase tracking-tight">Activate Emergency SOS</h3>
+        <p class="text-xs text-red-200">
+          This broadcasts your GPS fix directly to Coast Guard, Disaster Management teams, and volunteer rescue boats.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-semibold text-gray-300">What is the primary nature of danger?</label>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <label class="p-3 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center gap-2 cursor-pointer hover:border-red-500 transition">
+            <input type="radio" name="sosReason" value="Flooding / Trapped" checked class="text-red-600 focus:ring-0">
+            <span class="text-white font-medium">🌊 Flood / Trapped</span>
+          </label>
+          <label class="p-3 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center gap-2 cursor-pointer hover:border-red-500 transition">
+            <input type="radio" name="sosReason" value="Severe Medical Trauma" class="text-red-600 focus:ring-0">
+            <span class="text-white font-medium">🩸 Severe Injury</span>
+          </label>
+          <label class="p-3 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center gap-2 cursor-pointer hover:border-red-500 transition">
+            <input type="radio" name="sosReason" value="Structural Collapse" class="text-red-600 focus:ring-0">
+            <span class="text-white font-medium">🏚️ Roof Collapse</span>
+          </label>
+          <label class="p-3 rounded-xl bg-gray-800/80 border border-gray-700 flex items-center gap-2 cursor-pointer hover:border-red-500 transition">
+            <input type="radio" name="sosReason" value="Isolated Elderly / Infants" class="text-red-600 focus:ring-0">
+            <span class="text-white font-medium">👶 Infants / Elderly</span>
+          </label>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Number of people trapped:</label>
+          <div class="flex items-center gap-3">
+            <input type="range" id="peopleCountSlider" min="1" max="15" value="3" oninput="document.getElementById('peopleCountVal').innerText = this.value" class="w-full accent-red-500">
+            <span id="peopleCountVal" class="w-8 text-center font-mono font-bold text-red-400 text-lg">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <button id="sendSosConfirmBtn" onclick="dispatchSOSBeacon()" class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-black text-base uppercase tracking-wider glow-red shadow-xl transition flex items-center justify-center gap-2">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          </span>
+          Broadcast Emergency SOS Now
+        </button>
+
+        <button onclick="closeModal('sosModal')" class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-medium transition">
+          Cancel & Return
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- B. RESERVATION MODAL FOR SHELTER COT -->
+  <div id="reserveModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="relative w-full max-w-md p-6 rounded-3xl bg-gray-900 border border-gray-700 shadow-2xl space-y-5">
+      <button onclick="closeModal('reserveModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">✕</button>
+      
+      <div>
+        <span class="text-xs font-mono text-cyan-400 font-bold uppercase">Safe Shelter Reservation</span>
+        <h3 id="resCampTitle" class="text-xl font-bold text-white mt-1">Civic Sports Arena Shelter</h3>
+        <p class="text-xs text-gray-400">Holding spot valid for 3 hours to allow travel time.</p>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="text-gray-300 block mb-1">Full Name / Family Representative</label>
+          <input type="text" id="resNameInput" placeholder="e.g. David Miller" class="w-full px-3 py-2 rounded-xl bg-black border border-gray-700 text-white focus:outline-none focus:border-cyan-500">
+        </div>
+        <div>
+          <label class="text-gray-300 block mb-1">Number of Cots Needed</label>
+          <input type="number" id="resBedsCount" value="2" min="1" max="8" class="w-full px-3 py-2 rounded-xl bg-black border border-gray-700 text-white focus:outline-none focus:border-cyan-500">
+        </div>
+      </div>
+
+      <button onclick="confirmCampReservation()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-950 transition">
+        Confirm Cots & Send Evacuation Pass
+      </button>
+    </div>
+  </div>
+
+  <!-- C. STRANDED CITIZEN REQUISITION MODAL (NEED VS SURPLUS MATRIX) -->
   <div id="modal-citizen-requisition" class="modal-backdrop">
-    <div class="modal-box large">
+    <div class="modal-box max-w-2xl">
       <div class="modal-header">
-        <h3 style="color: var(--accent-cyan);"><span>📦</span> Request Relief Supplies & Declare Needs</h3>
+        <h3><span>📦</span> Requisition Supplies Manifest</h3>
         <button class="btn-close-modal" onclick="closeModal('modal-citizen-requisition')">&times;</button>
       </div>
-      
-      <p style="font-size: 0.84rem; color: var(--text-muted);">
-        Select the items you <strong>urgently need</strong> and mark items you <strong>do NOT need</strong> to prevent supply wastage. Your request is submitted to the nearest relief shelter with GPS verification.
+      <p class="text-xs text-gray-400 mb-4">
+        Select the items you <strong>urgently need</strong> and mark items you <strong>do NOT need / have</strong> to prevent supply wastage.
       </p>
 
       <form id="form-citizen-requisition" onsubmit="submitCitizenRequisition(event)">
-        <!-- Citizen Contact & Location -->
         <div class="form-row">
           <div class="form-group">
             <label>Your Full Name *</label>
@@ -856,155 +816,59 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label style="display: flex; justify-content: space-between;">
+            <label class="flex items-center justify-between">
               <span>Current Location / Landmark *</span>
-              <button type="button" onclick="acquireLiveGPS(false)" style="color: var(--accent-cyan); font-size: 0.72rem; text-decoration: underline; background: none; border: none; cursor: pointer;">
-                🛰️ Auto-Fill GPS Location
+              <button type="button" onclick="acquireRealGPS()" class="text-cyan-400 text-[11px] underline">
+                🛰️ Auto-Fill GPS
               </button>
             </label>
             <input type="text" id="req-citizen-location" placeholder="e.g. Block 4, North Ridge Road" required />
           </div>
           <div class="form-group">
-            <label>Select Nearest Relief Shelter / Donation Camp *</label>
+            <label>Select Nearest Relief Shelter *</label>
             <select id="req-camp-select" required></select>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label>Family / Group Headcount (People)</label>
+            <label>Headcount (People)</label>
             <input type="number" id="req-people-count" value="3" min="1" max="50" required />
           </div>
           <div class="form-group">
             <label>Delivery Preference</label>
             <select id="req-delivery-pref">
-              <option value="CAMP_PICKUP">I will pick up from nearest camp</option>
-              <option value="DOORSTEP_DELIVERY" selected>Emergency Delivery to my location (Trapped/Elderly/Injured)</option>
+              <option value="DOORSTEP_DELIVERY" selected>Emergency Drone Delivery (Trapped/Injured)</option>
+              <option value="CAMP_PICKUP">I will pick up from nearest shelter</option>
             </select>
           </div>
         </div>
 
-        <!-- Categorized Item Requisition Matrix -->
-        <div class="form-group" style="margin-top: 0.5rem;">
-          <label style="color: var(--accent-cyan); display: flex; justify-content: space-between;">
-            <span>Select Supplies: [🔴 Urgently Need] | [🟢 Don't Need / Have] | [🟡 Surplus to Share]</span>
-            <span style="font-size: 0.72rem; color: var(--text-dim);">Toggle choice for each item</span>
+        <div class="form-group">
+          <label class="text-cyan-400 flex items-center justify-between text-xs">
+            <span>Select Supplies: [🔴 Urgently Need] | [🟢 Don't Need] | [🟡 Surplus to Share]</span>
           </label>
           <div id="requisition-items-list" class="requisition-catalog-grid"></div>
         </div>
 
         <div class="form-group">
           <label>Surplus Items You Can Share / Extra Notes</label>
-          <textarea id="req-special-notes" rows="2" placeholder="e.g. We have extra blankets to share; need insulin kept cold..."></textarea>
+          <textarea id="req-special-notes" rows="2" placeholder="e.g. Extra blankets to share; need insulin kept cold..."></textarea>
         </div>
 
         <div class="modal-actions">
           <button type="button" class="btn-action secondary" onclick="closeModal('modal-citizen-requisition')">Cancel</button>
-          <button type="submit" class="btn-action success">🚀 Submit Supplies Requisition</button>
+          <button type="submit" class="btn-action success">🚀 Submit Requisition Manifest</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- 2. AUTHENTICATION & ROLE SWITCHER MODAL -->
-  <div id="modal-auth" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3><span>🛡️</span> Select Role & Security Clearance</h3>
-        <button class="btn-close-modal" onclick="closeModal('modal-auth')">&times;</button>
-      </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">
-        Select an authorized role to test permissions across incident logging, shelter coordination, and citizen requisitions.
-      </p>
-      <div class="role-grid">
-        <div class="role-card-option" onclick="switchDemoRole('admin')">
-          <h4>Arthur Vance <span class="role-tag admin">Admin</span></h4>
-          <p><strong>Incident Commander</strong>: Full system control, inventory dispatch, and incident updates.</p>
-        </div>
-        <div class="role-card-option" onclick="switchDemoRole('coordinator')">
-          <h4>Dr. Sarah Jenkins <span class="role-tag coordinator">Coordinator</span></h4>
-          <p><strong>Shelter Coordinator</strong>: Admits evacuees, manages shelter beds and supplies.</p>
-        </div>
-        <div class="role-card-option" onclick="switchDemoRole('volunteer')">
-          <h4>Capt. David Miller <span class="role-tag volunteer">Volunteer</span></h4>
-          <p><strong>Rescue Responder</strong>: Views missions and updates SOS field resolutions.</p>
-        </div>
-        <div class="role-card-option" onclick="switchDemoRole('public')">
-          <h4>Citizen Access <span class="role-tag public">Public</span></h4>
-          <p><strong>Stranded Citizen</strong>: Submits relief supply manifests, SOS calls, and missing person search.</p>
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-action secondary" onclick="closeModal('modal-auth')">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. EMERGENCY SOS TRANSMISSION MODAL WITH LIVE GPS -->
-  <div id="modal-sos" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 style="color: #fca5a5;"><span>🆘</span> Transmit Emergency SOS Distress Call</h3>
-        <button class="btn-close-modal" onclick="closeModal('modal-sos')">&times;</button>
-      </div>
-      <form id="form-sos" onsubmit="submitSOS(event)">
-        <div class="form-group">
-          <label style="display: flex; justify-content: space-between;">
-            <span>Trapped Location / Landmark *</span>
-            <button type="button" onclick="acquireLiveGPS(false)" style="color: #fca5a5; font-size: 0.72rem; text-decoration: underline; background: none; border: none; cursor: pointer;">
-              🛰️ Auto-Lock Live GPS
-            </button>
-          </label>
-          <input type="text" id="sos-location" placeholder="e.g. East Valley River Bank, Near Sector 4 Bridge" required />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Caller Name *</label>
-            <input type="text" id="sos-caller" placeholder="Your Name" required />
-          </div>
-          <div class="form-group">
-            <label>Emergency Contact Phone *</label>
-            <input type="tel" id="sos-phone" placeholder="+1 (555) 000-0000" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Estimated People Trapped</label>
-            <input type="number" id="sos-trapped" value="1" min="1" max="100" />
-          </div>
-          <div class="form-group">
-            <label>Urgency Level</label>
-            <select id="sos-urgency">
-              <option value="CRITICAL" selected>Critical (Life Threatened)</option>
-              <option value="HIGH">High (Injured / Rising Threat)</option>
-              <option value="MEDIUM">Medium (Stranded / Need Evacuation)</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Hazard Details / Immediate Danger</label>
-          <textarea id="sos-description" rows="3" placeholder="Describe the threat (e.g. water entering roof, collapsed wall, medical distress)..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Attach Ground Photo / Evidence</label>
-          <input type="file" id="sos-photo-file" accept="image/*" class="text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-cyan-500/20 file:text-cyan-300 hover:file:bg-cyan-500/30 cursor-pointer" />
-          <div id="sos-photo-preview" style="display: none; margin-top: 0.5rem;">
-            <img id="sos-preview-img" src="" alt="Evidence Preview" style="max-height: 90px; border-radius: 8px; border: 1px solid var(--border-subtle);" />
-          </div>
-        </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-action secondary" onclick="closeModal('modal-sos')">Cancel</button>
-          <button type="submit" class="btn-action danger">⚡ Dispatch Urgent SOS</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- 4. LOG NEW INCIDENT MODAL -->
+  <!-- D. LOG NEW INCIDENT MODAL -->
   <div id="modal-incident" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><span>⚡</span> Log Disaster Incident</h3>
+        <h3><span>⚡</span> Log Disaster Threat Zone</h3>
         <button class="btn-close-modal" onclick="closeModal('modal-incident')">&times;</button>
       </div>
       <form id="form-incident" onsubmit="submitIncident(event)">
@@ -1045,17 +909,17 @@
         </div>
         <div class="modal-actions">
           <button type="button" class="btn-action secondary" onclick="closeModal('modal-incident')">Cancel</button>
-          <button type="submit" class="btn-action danger">Register Incident</button>
+          <button type="submit" class="btn-action danger">Register Threat Zone</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- 5. ADD RELIEF CAMP MODAL -->
+  <!-- E. ADD RELIEF CAMP MODAL -->
   <div id="modal-camp" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><span>🏕️</span> Establish New Relief Camp / Shelter</h3>
+        <h3><span>🏕️</span> Establish New Relief Shelter</h3>
         <button class="btn-close-modal" onclick="closeModal('modal-camp')">&times;</button>
       </div>
       <form id="form-camp" onsubmit="submitCamp(event)">
@@ -1085,127 +949,17 @@
         </div>
         <div class="modal-actions">
           <button type="button" class="btn-action secondary" onclick="closeModal('modal-camp')">Cancel</button>
-          <button type="submit" class="btn-action">Establish Camp</button>
+          <button type="submit" class="btn-action warning">Open Safe Shelter</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- 6. ADMIT EVACUEE / PATIENT MODAL -->
-  <div id="modal-victim" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3><span>👥</span> Admit Evacuee / Casualty</h3>
-        <button class="btn-close-modal" onclick="closeModal('modal-victim')">&times;</button>
-      </div>
-      <form id="form-victim" onsubmit="submitVictim(event)">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" id="vic-name" placeholder="Evacuee full name" required />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Age</label>
-            <input type="number" id="vic-age" placeholder="Age" min="0" max="120" value="30" />
-          </div>
-          <div class="form-group">
-            <label>Gender</label>
-            <select id="vic-gender">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Medical Triage Condition *</label>
-            <select id="vic-condition" required>
-              <option value="STABLE" selected>STABLE</option>
-              <option value="INJURED">INJURED (Non-critical)</option>
-              <option value="CRITICAL">CRITICAL (Requires Immediate Hospital Care)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Assign to Relief Shelter *</label>
-            <select id="vic-camp-select" required></select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Next-of-Kin Contact Details</label>
-          <input type="text" id="vic-kin" placeholder="e.g. Spouse / Parent name & phone number" />
-        </div>
-        <div class="form-group">
-          <label>Special Needs / Prescriptions</label>
-          <input type="text" id="vic-needs" placeholder="e.g. Diabetic, wheelchair required" />
-        </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-action secondary" onclick="closeModal('modal-victim')">Cancel</button>
-          <button type="submit" class="btn-action success">Admit to Shelter</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- 7. INBOUND STOCK REPLENISH MODAL -->
-  <div id="modal-replenish-supply" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3><span>📦</span> Inbound Relief Stock Replenishment</h3>
-        <button class="btn-close-modal" onclick="closeModal('modal-replenish-supply')">&times;</button>
-      </div>
-      <form id="form-replenish" onsubmit="submitReplenish(event)">
-        <div class="form-group">
-          <label>Select Item to Replenish *</label>
-          <select id="replenish-item-select" required></select>
-        </div>
-        <div class="form-group">
-          <label>Replenishment Quantity *</label>
-          <input type="number" id="replenish-qty" min="1" placeholder="e.g. 500" required />
-        </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-action secondary" onclick="closeModal('modal-replenish-supply')">Cancel</button>
-          <button type="submit" class="btn-action">Add Stock to Warehouse</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- 8. DISPATCH STOCK TO CAMP MODAL -->
-  <div id="modal-dispatch-supply" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3><span>🚀</span> Dispatch Supplies to Relief Camp</h3>
-        <button class="btn-close-modal" onclick="closeModal('modal-dispatch-supply')">&times;</button>
-      </div>
-      <form id="form-dispatch" onsubmit="submitDispatch(event)">
-        <div class="form-group">
-          <label>Select Supply Item *</label>
-          <select id="dispatch-item-select" required></select>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Quantity to Dispatch *</label>
-            <input type="number" id="dispatch-qty" min="1" placeholder="Quantity" required />
-          </div>
-          <div class="form-group">
-            <label>Destination Relief Shelter *</label>
-            <select id="dispatch-camp-select" required></select>
-          </div>
-        </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-action secondary" onclick="closeModal('modal-dispatch-supply')">Cancel</button>
-          <button type="submit" class="btn-action danger">Confirm Dispatch</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- 9. ENLIST VOLUNTEER MODAL -->
+  <!-- F. ENLIST VOLUNTEER MODAL -->
   <div id="modal-volunteer" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><span>🦺</span> Enlist New Relief Volunteer</h3>
+        <h3><span>🦺</span> Enlist Relief Volunteer</h3>
         <button class="btn-close-modal" onclick="closeModal('modal-volunteer')">&times;</button>
       </div>
       <form id="form-volunteer" onsubmit="submitVolunteer(event)">
@@ -1237,7 +991,7 @@
     </div>
   </div>
 
-  <!-- 10. DONATION CONTRIBUTION MODAL -->
+  <!-- G. DONATION CONTRIBUTION MODAL -->
   <div id="modal-donation" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
@@ -1272,27 +1026,36 @@
     </div>
   </div>
 
-  <!-- Toast Notification Alerts Container -->
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
   <div id="toast-container"></div>
 
   <!-- =========================================================================
-       GLOBAL FOOTER
+       5. FOOTER
        ========================================================================= -->
-  <footer class="border-t border-slate-800 bg-relief-900/60 py-6 mt-12 text-xs text-slate-400">
+  <footer class="mt-auto border-t border-gray-800 bg-[#070B14] py-8 text-xs text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <img src="/logo.png" alt="DRMS Emblem" class="w-7 h-7 object-contain opacity-80" />
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+        </div>
         <div>
-          <strong class="text-white">Disaster Relief Management System (DRMS)</strong> &copy; 2026. Satellite & GNSS Humanitarian Rescue Network.
+          <strong class="text-white text-sm">WARM HANDS • Disaster Relief Management System (DRMS)</strong> &copy; 2026.
+          <p class="text-gray-500 text-[11px]">Satellite & GNSS Humanitarian Rescue Network. Real-time emergency aid dispatch.</p>
         </div>
       </div>
-      <div class="flex items-center gap-4 text-emerald-400 font-semibold">
-        <span>🛡️ RBAC Protected</span>
-        <span>🛰️ GPS Sat-Lock Active</span>
-        <span>⚡ Helmet & CSP Guard</span>
+      <div class="flex items-center gap-4 text-emerald-400 font-semibold font-mono">
+        <span>🛰️ GPS Mesh Active</span>
+        <span>•</span>
+        <span>🛡️ Protected</span>
+        <span>•</span>
+        <a href="tel:911" class="text-red-400 hover:underline">Emergency Line: 911 / 112</a>
       </div>
     </div>
   </footer>
+
   <!-- Core Client App JS -->
   <script src="/js/app.js"></script>
 </body>
