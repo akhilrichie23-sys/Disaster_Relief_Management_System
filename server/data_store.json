@@ -1,0 +1,1630 @@
+{
+  "users": [
+    {
+      "id": "USR-001",
+      "username": "commander",
+      "passwordHash": "$2b$10$VEi/mjNPkii1dpsjG8MPNuml35GxxMJqUBd8UnE9pRfCeDkFi/RDW",
+      "fullName": "General Arthur Vance",
+      "role": "admin",
+      "badge": "Incident Commander",
+      "email": "commander@relief.gov"
+    },
+    {
+      "id": "USR-002",
+      "username": "coordinator",
+      "passwordHash": "$2b$10$VEi/mjNPkii1dpsjG8MPNuJ9YdhFRtJO0eMl.x1DSMuHQ5ljRthOa",
+      "fullName": "Dr. Sarah Jenkins",
+      "role": "coordinator",
+      "badge": "Camp Coordinator",
+      "email": "sjenkins@relief.gov"
+    },
+    {
+      "id": "USR-003",
+      "username": "responder",
+      "passwordHash": "$2b$10$VEi/mjNPkii1dpsjG8MPNurMADJAeb2PJBLkZWn5pZm4DFq8xoE.W",
+      "fullName": "Capt. David Miller",
+      "role": "volunteer",
+      "badge": "Search & Rescue Lead",
+      "email": "dmiller@rescue.org"
+    },
+    {
+      "id": "USR-004",
+      "username": "citizen",
+      "passwordHash": "$2b$10$VEi/mjNPkii1dpsjG8MPNuv7y54Bsk3kJqjFXZCAOlHFnkGrgtvbK",
+      "fullName": "Civic Member",
+      "role": "public",
+      "badge": "Citizen Access",
+      "email": "citizen@public.net"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "INC-114",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.109886429510137,
+      "lng": 80.24808594327013,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:54",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-113",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.052652508812788,
+      "lng": 80.30682868363172,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:38",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-112",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.103574980619932,
+      "lng": 80.29675477573763,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:33",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-111",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.046414636660414,
+      "lng": 80.28612253002571,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:32",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-110",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.059724714416046,
+      "lng": 80.25735734459208,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:30",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-109",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.081651402891518,
+      "lng": 80.2846335417598,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:28",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-108",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.09792876871486,
+      "lng": 80.29529776298644,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:28",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-107",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.076375223417381,
+      "lng": 80.23400786505144,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:22",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-106",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.059826728401694,
+      "lng": 80.26091943001394,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:20",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-105",
+      "type": "CYCLONE",
+      "location": "Eastern Seaboard Sector 8",
+      "lat": 13.09975466640068,
+      "lng": 80.27798862668268,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 650,
+      "reportedTime": "2026-09-17 05:18",
+      "description": "Gale wind warnings and flash storm surge"
+    },
+    {
+      "id": "INC-104",
+      "type": "CYCLONE",
+      "location": "South Coast Harbor",
+      "lat": 13.059728141405154,
+      "lng": 80.28173813986577,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 450,
+      "reportedTime": "2026-09-17 04:53",
+      "description": "Gale force winds damaging shore structures"
+    },
+    {
+      "id": "INC-101",
+      "type": "FLOOD",
+      "location": "River Valley, Sector 4",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "severity": "CRITICAL",
+      "status": "ACTIVE",
+      "affectedPopulation": 1200,
+      "reportedTime": "2026-09-17 08:30",
+      "description": "Severe riverbank overflow caused by heavy monsoon downpours. Multiple residential clusters submerged."
+    },
+    {
+      "id": "INC-102",
+      "type": "EARTHQUAKE",
+      "location": "North Ridge Zone",
+      "lat": 13.12,
+      "lng": 80.21,
+      "severity": "HIGH",
+      "status": "ACTIVE",
+      "affectedPopulation": 850,
+      "reportedTime": "2026-09-17 09:15",
+      "description": "Magnitude 5.8 seismic tremor resulting in structural fissures and building evacuations."
+    },
+    {
+      "id": "INC-103",
+      "type": "LANDSLIDE",
+      "location": "Hilltop Pass Road",
+      "lat": 13.03,
+      "lng": 80.18,
+      "severity": "MEDIUM",
+      "status": "UNDER_CONTROL",
+      "affectedPopulation": 150,
+      "reportedTime": "2026-09-17 09:45",
+      "description": "Debris blockage on arterial highway. Road clearance operations currently underway."
+    }
+  ],
+  "camps": [
+    {
+      "id": "CAMP-201",
+      "name": "City Civic Arena Shelter",
+      "location": "Downtown Sector 1",
+      "lat": 13.06,
+      "lng": 80.25,
+      "capacity": 500,
+      "currentOccupancy": 142,
+      "coordinator": "Col. Robert Vance",
+      "contact": "+1 (555) 987-6541",
+      "amenities": [
+        "Power Generator",
+        "Field Hospital",
+        "Clean Kitchen",
+        "WiFi Beacon"
+      ]
+    },
+    {
+      "id": "CAMP-202",
+      "name": "St. Jude Community Hall",
+      "location": "North Ridge Suburb",
+      "lat": 13.11,
+      "lng": 80.23,
+      "capacity": 300,
+      "currentOccupancy": 95,
+      "coordinator": "Dr. Sarah Jenkins",
+      "contact": "+1 (555) 987-6542",
+      "amenities": [
+        "Pediatric Unit",
+        "Potable Water Tanks",
+        "Blanket Store"
+      ]
+    },
+    {
+      "id": "CAMP-203",
+      "name": "Govt High School Grounds",
+      "location": "Eastern Safe Zone",
+      "lat": 13.02,
+      "lng": 80.24,
+      "capacity": 450,
+      "currentOccupancy": 88,
+      "coordinator": "Mark Sullivan",
+      "contact": "+1 (555) 987-6543",
+      "amenities": [
+        "Helipad Access",
+        "Community Kitchen",
+        "Sanitation Blocks"
+      ]
+    },
+    {
+      "id": "CAMP-204",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.089150190199804,
+      "lng": 80.24934896324719,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-205",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.097876001772107,
+      "lng": 80.25502534075898,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-206",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.033753846463325,
+      "lng": 80.20557555381316,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-207",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.045901233975117,
+      "lng": 80.25698209957312,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-208",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.0251669905736,
+      "lng": 80.20948432564776,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-209",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.036465457534348,
+      "lng": 80.20805986862413,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-210",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.02721298873512,
+      "lng": 80.25134777072165,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-211",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.070197331842023,
+      "lng": 80.23889741932112,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-212",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.028293597965469,
+      "lng": 80.27199761424971,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    },
+    {
+      "id": "CAMP-213",
+      "name": "North Point Community Hall",
+      "location": "North Zone Sector 1",
+      "lat": 13.044144360237048,
+      "lng": 80.26729903831968,
+      "capacity": 350,
+      "currentOccupancy": 1,
+      "coordinator": "Major Thompson",
+      "contact": "+1-555-666-7777",
+      "amenities": [
+        "Clean Drinking Water",
+        "First Aid Post"
+      ]
+    }
+  ],
+  "victims": [
+    {
+      "id": "VIC-314",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-213",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:54",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-313",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-212",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:38",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-312",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-211",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:33",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-311",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-210",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:32",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-310",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-209",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:30",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-309",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-208",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:28",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-308",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-207",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:28",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-307",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-206",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:22",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-306",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-205",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:20",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-305",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-204",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-09-17 05:18",
+      "specialNeeds": "Infant care kit"
+    },
+    {
+      "id": "VIC-301",
+      "name": "John Anderson",
+      "age": 42,
+      "gender": "Male",
+      "condition": "STABLE",
+      "campId": "CAMP-201",
+      "campName": "City Civic Arena Shelter",
+      "kinContact": "Martha Anderson (+1 555-0192)",
+      "registeredAt": "2026-09-17 08:50",
+      "specialNeeds": "None"
+    },
+    {
+      "id": "VIC-302",
+      "name": "Maria Gonzalez",
+      "age": 28,
+      "gender": "Female",
+      "condition": "INJURED",
+      "campId": "CAMP-201",
+      "campName": "City Civic Arena Shelter",
+      "kinContact": "Carlos Gonzalez (+1 555-0193)",
+      "registeredAt": "2026-09-17 09:10",
+      "specialNeeds": "Left leg fracture dressing required"
+    },
+    {
+      "id": "VIC-303",
+      "name": "Arthur Pendelton",
+      "age": 76,
+      "gender": "Male",
+      "condition": "CRITICAL",
+      "campId": "CAMP-202",
+      "campName": "St. Jude Community Hall",
+      "kinContact": "Elena Pendelton (+1 555-0194)",
+      "registeredAt": "2026-09-17 09:30",
+      "specialNeeds": "Insulin dependence, respiratory monitoring"
+    },
+    {
+      "id": "VIC-304",
+      "name": "Maya Lin",
+      "age": 8,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-203",
+      "campName": "Govt High School Grounds",
+      "kinContact": "David Lin (+1 555-0195)",
+      "registeredAt": "2026-09-17 10:00",
+      "specialNeeds": "Pediatric care"
+    }
+  ],
+  "supplies": [
+    {
+      "id": "FOOD-1",
+      "name": "Ready-to-Eat Ration Packs",
+      "category": "FOOD_RATIONS",
+      "quantity": 1510,
+      "unit": "Meals",
+      "minThreshold": 300,
+      "warehouse": "Central Depot A"
+    },
+    {
+      "id": "WATER-1",
+      "name": "Potable Mineral Water (5L)",
+      "category": "DRINKING_WATER",
+      "quantity": 2150,
+      "unit": "Bottles",
+      "minThreshold": 500,
+      "warehouse": "Central Depot A"
+    },
+    {
+      "id": "MED-1",
+      "name": "Emergency Trauma & First Aid",
+      "category": "MEDICAL_KITS",
+      "quantity": 420,
+      "unit": "Kits",
+      "minThreshold": 100,
+      "warehouse": "Medical Bay Alpha"
+    },
+    {
+      "id": "TENT-1",
+      "name": "Thermal Blankets & Tents",
+      "category": "TENTS_BLANKETS",
+      "quantity": 780,
+      "unit": "Sets",
+      "minThreshold": 150,
+      "warehouse": "Logistics Depot B"
+    },
+    {
+      "id": "HYG-1",
+      "name": "Sanitation & Hygiene Packs",
+      "category": "HYGIENE_KITS",
+      "quantity": 590,
+      "unit": "Packs",
+      "minThreshold": 120,
+      "warehouse": "Logistics Depot B"
+    }
+  ],
+  "volunteers": [
+    {
+      "id": "VOL-401",
+      "name": "Capt. David Miller",
+      "skill": "SEARCH_AND_RESCUE",
+      "phone": "+1 (555) 321-4567",
+      "status": "DEPLOYED",
+      "assignedLocation": "River Valley, Sector 4",
+      "registeredDate": "2026-09-15"
+    },
+    {
+      "id": "VOL-402",
+      "name": "Dr. Emily Watson",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1 (555) 321-4568",
+      "status": "DEPLOYED",
+      "assignedLocation": "Sector 4 Trauma Unit",
+      "registeredDate": "2026-09-16"
+    },
+    {
+      "id": "VOL-403",
+      "name": "Carlos Rivera",
+      "skill": "LOGISTICS_SUPPLY",
+      "phone": "+1 (555) 321-4569",
+      "status": "AVAILABLE",
+      "assignedLocation": "Base HQ",
+      "registeredDate": "2026-09-16"
+    },
+    {
+      "id": "VOL-404",
+      "name": "Aisha Khan",
+      "skill": "FOOD_DISTRIBUTION",
+      "phone": "+1 (555) 321-4570",
+      "status": "DEPLOYED",
+      "assignedLocation": "City Civic Arena Shelter",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-405",
+      "name": "Nisha Sharma",
+      "skill": "PSYCHOSOCIAL_SUPPORT",
+      "phone": "+1 (555) 321-4571",
+      "status": "AVAILABLE",
+      "assignedLocation": "Base HQ",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-406",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-407",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-408",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-409",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-410",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-411",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-412",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-413",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-414",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    },
+    {
+      "id": "VOL-415",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-09-17"
+    }
+  ],
+  "emergencySOS": [
+    {
+      "id": "SOS-614",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:54:32"
+    },
+    {
+      "id": "SOS-613",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:38:59"
+    },
+    {
+      "id": "SOS-612",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:33:25"
+    },
+    {
+      "id": "SOS-611",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:32:23"
+    },
+    {
+      "id": "SOS-610",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:30:07"
+    },
+    {
+      "id": "SOS-609",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:28:34"
+    },
+    {
+      "id": "SOS-608",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:28:07"
+    },
+    {
+      "id": "SOS-607",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:22:59"
+    },
+    {
+      "id": "SOS-606",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:20:05"
+    },
+    {
+      "id": "SOS-605",
+      "location": "Bridge Pillar 12, River Basin",
+      "lat": 13.0855,
+      "lng": 80.268,
+      "accuracyMeters": 3.5,
+      "altitude": 12,
+      "satelliteLocked": false,
+      "imageUrl": null,
+      "callerName": "Rajesh Kumar",
+      "contact": "+1-555-333-2222",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "description": "Water rising rapidly around vehicle",
+      "isResolved": true,
+      "timestamp": "2026-09-17 05:18:22"
+    },
+    {
+      "id": "SOS-604",
+      "location": "Sector 4 Submerged Terrace",
+      "lat": 13.0844,
+      "lng": 80.2712,
+      "accuracyMeters": 3.8,
+      "altitude": 18.5,
+      "satelliteLocked": true,
+      "callerName": "Sunita Rao",
+      "contact": "+1-555-8899",
+      "peopleTrapped": 6,
+      "urgency": "CRITICAL",
+      "description": "Roof surrounded by swift currents, 2 infants present",
+      "isResolved": false,
+      "timestamp": "2026-09-17 05:00:50"
+    },
+    {
+      "id": "SOS-603",
+      "location": "Block 9 Rooftop",
+      "lat": 13.096576588781286,
+      "lng": 80.25129820931848,
+      "callerName": "Jane Doe",
+      "contact": "+1-555-4433",
+      "peopleTrapped": 4,
+      "urgency": "CRITICAL",
+      "description": "Water reached 2nd floor",
+      "isResolved": true,
+      "timestamp": "2026-09-17 04:53:54"
+    },
+    {
+      "id": "SOS-601",
+      "location": "Sector 4 Bridge East",
+      "lat": 13.085,
+      "lng": 80.275,
+      "callerName": "Samuel Green",
+      "contact": "+1 (555) 900-1111",
+      "peopleTrapped": 5,
+      "urgency": "CRITICAL",
+      "description": "Rapidly rising water levels touching residential rooftop. Elderly citizen stranded.",
+      "isResolved": false,
+      "timestamp": "2026-09-17 09:20:15"
+    },
+    {
+      "id": "SOS-602",
+      "location": "Ridge View Apts Block C",
+      "lat": 13.118,
+      "lng": 80.215,
+      "callerName": "Karen Taylor",
+      "contact": "+1 (555) 900-2222",
+      "peopleTrapped": 3,
+      "urgency": "HIGH",
+      "description": "Stairwell partially obstructed after quake tremor. Need evacuation assistance.",
+      "isResolved": false,
+      "timestamp": "2026-09-17 09:55:40"
+    }
+  ],
+  "donations": [
+    {
+      "id": "DON-514",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:54",
+      "txRef": "TXN-ONW4P6J"
+    },
+    {
+      "id": "DON-513",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:38",
+      "txRef": "TXN-HJ1NX29"
+    },
+    {
+      "id": "DON-512",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:33",
+      "txRef": "TXN-P5B8LU1"
+    },
+    {
+      "id": "DON-511",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:32",
+      "txRef": "TXN-JQV2XSC"
+    },
+    {
+      "id": "DON-510",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:30",
+      "txRef": "TXN-F1OL8Z7"
+    },
+    {
+      "id": "DON-509",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:28",
+      "txRef": "TXN-3BG3MAG"
+    },
+    {
+      "id": "DON-508",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:28",
+      "txRef": "TXN-D5O148T"
+    },
+    {
+      "id": "DON-507",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:22",
+      "txRef": "TXN-VYFPLL9"
+    },
+    {
+      "id": "DON-506",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:20",
+      "txRef": "TXN-E719TWK"
+    },
+    {
+      "id": "DON-505",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-09-17 05:18",
+      "txRef": "TXN-SCTSA24"
+    },
+    {
+      "id": "DON-504",
+      "donorName": "Tech For Humanity Foundation",
+      "amount": 12500,
+      "purpose": "Medical Trauma First Aid",
+      "date": "2026-09-17 04:53",
+      "txRef": "TXN-O6PGWU4"
+    },
+    {
+      "id": "DON-501",
+      "donorName": "Global Humanitarian Relief Trust",
+      "amount": 50000,
+      "purpose": "Emergency Food Rations & Trauma Care Kits",
+      "date": "2026-09-17 08:00",
+      "txRef": "TXN-GLB-9981"
+    },
+    {
+      "id": "DON-502",
+      "donorName": "Red Cross Partner Alliance",
+      "amount": 25000,
+      "purpose": "Camp Power Generation & Shelter Upgrades",
+      "date": "2026-09-17 08:45",
+      "txRef": "TXN-RC-4412"
+    },
+    {
+      "id": "DON-503",
+      "donorName": "Civic Tech Community Fund",
+      "amount": 5000,
+      "purpose": "Communication beacons and volunteer logistics",
+      "date": "2026-09-17 09:30",
+      "txRef": "TXN-CTC-1082"
+    }
+  ],
+  "counters": {
+    "incident": 115,
+    "camp": 214,
+    "victim": 315,
+    "volunteer": 416,
+    "donation": 515,
+    "sos": 615,
+    "citizenRequest": 712
+  },
+  "catalog": [
+    {
+      "id": "CAT-FOOD-1",
+      "category": "Food & Nutrition",
+      "name": "Ready-to-Eat Food Ration Packs",
+      "unit": "Packs",
+      "defaultQty": 3
+    },
+    {
+      "id": "CAT-FOOD-2",
+      "category": "Food & Nutrition",
+      "name": "Baby Food & Infant Formula",
+      "unit": "Cans",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-FOOD-3",
+      "category": "Food & Nutrition",
+      "name": "High-Energy Protein Biscuits",
+      "unit": "Packets",
+      "defaultQty": 4
+    },
+    {
+      "id": "CAT-FOOD-4",
+      "category": "Food & Nutrition",
+      "name": "Dry Grains & Ready Cereals",
+      "unit": "Kg",
+      "defaultQty": 5
+    },
+    {
+      "id": "CAT-WATER-1",
+      "category": "Water & Hydration",
+      "name": "Potable Bottled Mineral Water (5L)",
+      "unit": "Bottles",
+      "defaultQty": 4
+    },
+    {
+      "id": "CAT-WATER-2",
+      "category": "Water & Hydration",
+      "name": "Water Purification Chlorine Tablets",
+      "unit": "Strips",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-WATER-3",
+      "category": "Water & Hydration",
+      "name": "Oral Rehydration Salts (ORS)",
+      "unit": "Sachets",
+      "defaultQty": 6
+    },
+    {
+      "id": "CAT-MED-1",
+      "category": "Medical & First Aid",
+      "name": "Emergency Trauma & First Aid Kit",
+      "unit": "Kits",
+      "defaultQty": 1
+    },
+    {
+      "id": "CAT-MED-2",
+      "category": "Medical & First Aid",
+      "name": "Insulin Vials & Syringes (Diabetic)",
+      "unit": "Vials",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-MED-3",
+      "category": "Medical & First Aid",
+      "name": "Pain Relief & Paracetamol Packs",
+      "unit": "Strips",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-MED-4",
+      "category": "Medical & First Aid",
+      "name": "Asthma Inhalers (Salbutamol)",
+      "unit": "Units",
+      "defaultQty": 1
+    },
+    {
+      "id": "CAT-SHELTER-1",
+      "category": "Shelter & Warmth",
+      "name": "Thermal Insulation Blankets",
+      "unit": "Units",
+      "defaultQty": 3
+    },
+    {
+      "id": "CAT-SHELTER-2",
+      "category": "Shelter & Warmth",
+      "name": "Waterproof Rain Ponchos & Tarps",
+      "unit": "Units",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-SHELTER-3",
+      "category": "Shelter & Warmth",
+      "name": "Inflatable Sleeping Mats",
+      "unit": "Mats",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-HYG-1",
+      "category": "Hygiene & Care",
+      "name": "Sanitary Napkins / Menstrual Care",
+      "unit": "Packs",
+      "defaultQty": 3
+    },
+    {
+      "id": "CAT-HYG-2",
+      "category": "Hygiene & Care",
+      "name": "Infant Diapers (Medium/Large)",
+      "unit": "Packs",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-HYG-3",
+      "category": "Hygiene & Care",
+      "name": "Sanitation Soap & Antiseptic Disinfectant",
+      "unit": "Bottles",
+      "defaultQty": 2
+    },
+    {
+      "id": "CAT-POWER-1",
+      "category": "Power & Light",
+      "name": "Solar LED Flashlight & Emergency Lantern",
+      "unit": "Units",
+      "defaultQty": 1
+    },
+    {
+      "id": "CAT-POWER-2",
+      "category": "Power & Light",
+      "name": "Pre-charged USB Power Bank",
+      "unit": "Units",
+      "defaultQty": 1
+    }
+  ],
+  "citizenRequests": [
+    {
+      "id": "REQ-711",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:54:32"
+    },
+    {
+      "id": "REQ-710",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:38:59"
+    },
+    {
+      "id": "REQ-709",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:33:25"
+    },
+    {
+      "id": "REQ-708",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:32:23"
+    },
+    {
+      "id": "REQ-707",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:30:07"
+    },
+    {
+      "id": "REQ-706",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:28:34"
+    },
+    {
+      "id": "REQ-705",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:28:07"
+    },
+    {
+      "id": "REQ-704",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:22:59"
+    },
+    {
+      "id": "REQ-703",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:20:05"
+    },
+    {
+      "id": "REQ-702",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-09-17 05:18:22"
+    },
+    {
+      "id": "REQ-701",
+      "citizenName": "Ravi Verma",
+      "phone": "+1-555-2244",
+      "currentLocation": "Building 12, 3rd Floor Terrace",
+      "lat": 13.086,
+      "lng": 80.273,
+      "accuracyMeters": 4.2,
+      "satelliteLocked": true,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Bottled Mineral Water (5L)",
+          "quantity": 3,
+          "category": "Water &amp; Hydration"
+        },
+        {
+          "name": "Emergency Trauma &amp; First Aid Kit",
+          "quantity": 1,
+          "category": "Medical &amp; First Aid"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Dry Grains &amp; Ready Cereals (We have packaged rations)"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Thermal Blankets",
+          "quantity": 2
+        }
+      ],
+      "specialNotes": "Diabetic patient needs clean drinking water immediately.",
+      "status": "PENDING",
+      "timestamp": "2026-09-17 05:00:51"
+    }
+  ]
+}
