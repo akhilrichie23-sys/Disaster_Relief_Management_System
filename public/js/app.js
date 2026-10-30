@@ -1945,7 +1945,9 @@ function scrollToSection(id) {
   playBeep(450, 0.08);
   const el = document.getElementById(id);
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const yOffset = -80; // Account for sticky top header
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
   }
 }
 
@@ -1955,9 +1957,8 @@ function handleNavClick(event, targetId) {
   if (targetId === 'operations-section') {
     switchView('hq');
     setTimeout(() => {
-      const el = document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+      scrollToSection(targetId);
+    }, 50);
   } else {
     // If user was in HQ Ops, switch back to Citizen view to show the section
     const citizenSec = document.getElementById('citizenViewSection');
@@ -1965,12 +1966,11 @@ function handleNavClick(event, targetId) {
       switchView('citizen');
     }
     setTimeout(() => {
-      const el = document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToSection(targetId);
       if (targetId === 'map-section' && mapInstance) {
         mapInstance.invalidateSize();
       }
-    }, 100);
+    }, 50);
   }
 }
 
