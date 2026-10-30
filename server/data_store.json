@@ -39,220 +39,55 @@
   ],
   "incidents": [
     {
-      "id": "INC-118",
+      "id": "INC-119",
       "type": "CYCLONE",
       "location": "Eastern Seaboard Sector 8",
-      "lat": 13.096056693401241,
-      "lng": 80.25145695864201,
+      "lat": 13.042036957306689,
+      "lng": 80.28954830741779,
       "severity": "HIGH",
       "status": "ACTIVE",
       "affectedPopulation": 650,
-      "reportedTime": "2026-10-30 03:50",
+      "reportedTime": "2026-10-30 04:04",
       "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-117",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.047012486190475,
-      "lng": 80.23149697196945,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-10-29 20:09",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-116",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.09150536165737,
-      "lng": 80.26618519856943,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-10-29 18:04",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-115",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.045044175347874,
-      "lng": 80.23285548342422,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-10-29 17:57",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-114",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.109886429510137,
-      "lng": 80.24808594327013,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:54",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-113",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.052652508812788,
-      "lng": 80.30682868363172,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:38",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-112",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.103574980619932,
-      "lng": 80.29675477573763,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:33",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-111",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.046414636660414,
-      "lng": 80.28612253002571,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:32",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-110",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.059724714416046,
-      "lng": 80.25735734459208,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:30",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-109",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.081651402891518,
-      "lng": 80.2846335417598,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:28",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-108",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.09792876871486,
-      "lng": 80.29529776298644,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:28",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-107",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.076375223417381,
-      "lng": 80.23400786505144,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:22",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-106",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.059826728401694,
-      "lng": 80.26091943001394,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:20",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-105",
-      "type": "CYCLONE",
-      "location": "Eastern Seaboard Sector 8",
-      "lat": 13.09975466640068,
-      "lng": 80.27798862668268,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 650,
-      "reportedTime": "2026-09-17 05:18",
-      "description": "Gale wind warnings and flash storm surge"
-    },
-    {
-      "id": "INC-104",
-      "type": "CYCLONE",
-      "location": "South Coast Harbor",
-      "lat": 13.059728141405154,
-      "lng": 80.28173813986577,
-      "severity": "HIGH",
-      "status": "ACTIVE",
-      "affectedPopulation": 450,
-      "reportedTime": "2026-09-17 04:53",
-      "description": "Gale force winds damaging shore structures"
     },
     {
       "id": "INC-101",
       "type": "FLOOD",
-      "location": "River Valley, Sector 4",
-      "lat": 13.0827,
-      "lng": 80.2707,
+      "location": "Sector 4 River Basin",
       "severity": "CRITICAL",
       "status": "ACTIVE",
       "affectedPopulation": 1200,
-      "reportedTime": "2026-09-17 08:30",
-      "description": "Severe riverbank overflow caused by heavy monsoon downpours. Multiple residential clusters submerged."
+      "reportedTime": "2026-10-30T02:00:00.000Z",
+      "description": "Catastrophic river surge, stage 3 flood warning active.",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "assignedUnit": "Zodiac Rescue Boat 02"
     },
     {
       "id": "INC-102",
-      "type": "EARTHQUAKE",
-      "location": "North Ridge Zone",
-      "lat": 13.12,
-      "lng": 80.21,
+      "type": "CYCLONE",
+      "location": "East Coast Shoreline",
       "severity": "HIGH",
       "status": "ACTIVE",
-      "affectedPopulation": 850,
-      "reportedTime": "2026-09-17 09:15",
-      "description": "Magnitude 5.8 seismic tremor resulting in structural fissures and building evacuations."
+      "affectedPopulation": 3500,
+      "reportedTime": "2026-10-30T00:30:00.000Z",
+      "description": "High gale winds and sea surge impacting shoreline settlements.",
+      "lat": 13.085,
+      "lng": 80.285,
+      "assignedUnit": "Amphibious ARV-09"
     },
     {
       "id": "INC-103",
       "type": "LANDSLIDE",
-      "location": "Hilltop Pass Road",
-      "lat": 13.03,
-      "lng": 80.18,
+      "location": "West Valley Access Road",
       "severity": "MEDIUM",
       "status": "UNDER_CONTROL",
-      "affectedPopulation": 150,
-      "reportedTime": "2026-09-17 09:45",
-      "description": "Debris blockage on arterial highway. Road clearance operations currently underway."
+      "affectedPopulation": 450,
+      "reportedTime": "2026-10-29T21:00:00.000Z",
+      "description": "Mudslide blocking primary highway; heavy clearing equipment on site.",
+      "lat": 13.072,
+      "lng": 80.25,
+      "assignedUnit": null
     }
   ],
   "camps": [
@@ -260,8 +95,6 @@
       "id": "CAMP-201",
       "name": "City Civic Arena Shelter",
       "location": "Downtown Sector 1",
-      "lat": 13.06,
-      "lng": 80.25,
       "capacity": 500,
       "currentOccupancy": 142,
       "coordinator": "Col. Robert Vance",
@@ -271,14 +104,14 @@
         "Field Hospital",
         "Clean Kitchen",
         "WiFi Beacon"
-      ]
+      ],
+      "lat": 13.0827,
+      "lng": 80.2707
     },
     {
       "id": "CAMP-202",
       "name": "St. Jude Community Hall",
       "location": "North Ridge Suburb",
-      "lat": 13.11,
-      "lng": 80.23,
       "capacity": 300,
       "currentOccupancy": 95,
       "coordinator": "Dr. Sarah Jenkins",
@@ -286,15 +119,16 @@
       "amenities": [
         "Pediatric Unit",
         "Potable Water Tanks",
-        "Blanket Store"
-      ]
+        "Blanket Store",
+        "Pet Sanctuary"
+      ],
+      "lat": 13.09,
+      "lng": 80.278
     },
     {
       "id": "CAMP-203",
       "name": "Govt High School Grounds",
       "location": "Eastern Safe Zone",
-      "lat": 13.02,
-      "lng": 80.24,
       "capacity": 450,
       "currentOccupancy": 88,
       "coordinator": "Mark Sullivan",
@@ -302,210 +136,34 @@
       "amenities": [
         "Helipad Access",
         "Community Kitchen",
-        "Sanitation Blocks"
-      ]
+        "Sanitation Blocks",
+        "Pet Friendly Area"
+      ],
+      "lat": 13.075,
+      "lng": 80.26
     },
     {
       "id": "CAMP-204",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.089150190199804,
-      "lng": 80.24934896324719,
+      "name": "Trinity Parish Evacuation Center",
+      "location": "West Highland Basin",
       "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
+      "currentOccupancy": 110,
+      "coordinator": "Elena Gomez",
+      "contact": "+1 (555) 987-6544",
       "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
+        "Field Clinic & Nurse Post",
+        "Pet Crates & Food",
+        "Solar Power Bank"
+      ],
+      "lat": 13.095,
+      "lng": 80.255
     },
     {
-      "id": "CAMP-205",
+      "id": "CAMP-218",
       "name": "North Point Community Hall",
       "location": "North Zone Sector 1",
-      "lat": 13.097876001772107,
-      "lng": 80.25502534075898,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-206",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.033753846463325,
-      "lng": 80.20557555381316,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-207",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.045901233975117,
-      "lng": 80.25698209957312,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-208",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.0251669905736,
-      "lng": 80.20948432564776,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-209",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.036465457534348,
-      "lng": 80.20805986862413,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-210",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.02721298873512,
-      "lng": 80.25134777072165,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-211",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.070197331842023,
-      "lng": 80.23889741932112,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-212",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.028293597965469,
-      "lng": 80.27199761424971,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-213",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.044144360237048,
-      "lng": 80.26729903831968,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-214",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.063074412972423,
-      "lng": 80.22437248993782,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-215",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.064957860439142,
-      "lng": 80.23728222412441,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-216",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.055606702688962,
-      "lng": 80.26577538159681,
-      "capacity": 350,
-      "currentOccupancy": 1,
-      "coordinator": "Major Thompson",
-      "contact": "+1-555-666-7777",
-      "amenities": [
-        "Clean Drinking Water",
-        "First Aid Post"
-      ]
-    },
-    {
-      "id": "CAMP-217",
-      "name": "North Point Community Hall",
-      "location": "North Zone Sector 1",
-      "lat": 13.093433495655908,
-      "lng": 80.26663971407021,
+      "lat": 13.030157705267225,
+      "lng": 80.2610904442312,
       "capacity": 350,
       "currentOccupancy": 1,
       "coordinator": "Major Thompson",
@@ -517,6 +175,18 @@
     }
   ],
   "victims": [
+    {
+      "id": "VIC-319",
+      "name": "Anita Roy",
+      "age": 28,
+      "gender": "Female",
+      "condition": "STABLE",
+      "campId": "CAMP-218",
+      "campName": "North Point Community Hall",
+      "kinContact": "+1-555-111-2222",
+      "registeredAt": "2026-10-30 04:04",
+      "specialNeeds": "Infant care kit"
+    },
     {
       "id": "VIC-318",
       "name": "Anita Roy",
@@ -739,7 +409,7 @@
       "id": "FOOD-1",
       "name": "Ready-to-Eat Ration Packs",
       "category": "FOOD_RATIONS",
-      "quantity": 1470,
+      "quantity": 1460,
       "unit": "Meals",
       "minThreshold": 300,
       "warehouse": "Central Depot A"
@@ -952,11 +622,20 @@
       "status": "DEPLOYED",
       "assignedLocation": "North Point Community Hall",
       "registeredDate": "2026-10-30"
+    },
+    {
+      "id": "VOL-420",
+      "name": "Dr. Sanjay Gupta",
+      "skill": "MEDICAL_FIRST_RESPONDER",
+      "phone": "+1-555-999-0000",
+      "status": "DEPLOYED",
+      "assignedLocation": "North Point Community Hall",
+      "registeredDate": "2026-10-30"
     }
   ],
   "emergencySOS": [
     {
-      "id": "SOS-618",
+      "id": "SOS-619",
       "location": "Bridge Pillar 12, River Basin",
       "lat": 13.0855,
       "lng": 80.268,
@@ -970,286 +649,88 @@
       "urgency": "CRITICAL",
       "description": "Water rising rapidly around vehicle",
       "isResolved": true,
-      "timestamp": "2026-10-30 03:50:24"
+      "timestamp": "2026-10-30 04:04:50"
+    },
+    {
+      "id": "SOS-618",
+      "callerName": "Rajesh Kumar",
+      "phone": "+1 (555) 789-0123",
+      "location": "Bridge Pillar 12, River Basin",
+      "peopleTrapped": 3,
+      "urgency": "CRITICAL",
+      "hazardDescription": "Water level rising quickly. 3 trapped on bridge pillar.",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "timestamp": "2026-10-30T03:50:24.000Z",
+      "isResolved": false,
+      "dispatchedUnit": null
     },
     {
       "id": "SOS-617",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
+      "callerName": "Sunita Rao",
+      "phone": "+1 (555) 345-6789",
+      "location": "St. Mary School Rooftop",
+      "peopleTrapped": 4,
       "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
+      "hazardDescription": "Family trapped with elderly grandmother, need evacuation boat.",
+      "lat": 13.085,
+      "lng": 80.273,
+      "timestamp": "2026-10-30T02:09:09.000Z",
       "isResolved": true,
-      "timestamp": "2026-10-29 20:09:09"
+      "dispatchedUnit": "Zodiac Rescue Boat 02"
     },
     {
       "id": "SOS-616",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
+      "callerName": "David Miller",
+      "phone": "+1 (555) 901-2345",
+      "location": "East Valley Highway Overpass",
+      "peopleTrapped": 2,
+      "urgency": "HIGH",
+      "hazardDescription": "Vehicle submerged up to hood, 2 occupants safe on roof.",
+      "lat": 13.078,
+      "lng": 80.265,
+      "timestamp": "2026-10-30T01:04:23.000Z",
       "isResolved": true,
-      "timestamp": "2026-10-29 18:04:23"
+      "dispatchedUnit": "Amphibious ARV-09"
     },
     {
       "id": "SOS-615",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-10-29 17:57:02"
+      "callerName": "Karen Taylor",
+      "phone": "+1 (555) 678-9012",
+      "location": "Sector 4 Residential Block 9",
+      "peopleTrapped": 5,
+      "urgency": "HIGH",
+      "hazardDescription": "Elderly group cut off by floodwater, running low on medication.",
+      "lat": 13.081,
+      "lng": 80.269,
+      "timestamp": "2026-10-29T23:57:02.000Z",
+      "isResolved": false,
+      "dispatchedUnit": "Heavy Drop Drone D-4"
     },
     {
       "id": "SOS-614",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:54:32"
-    },
-    {
-      "id": "SOS-613",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:38:59"
-    },
-    {
-      "id": "SOS-612",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:33:25"
-    },
-    {
-      "id": "SOS-611",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:32:23"
-    },
-    {
-      "id": "SOS-610",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:30:07"
-    },
-    {
-      "id": "SOS-609",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:28:34"
-    },
-    {
-      "id": "SOS-608",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:28:07"
-    },
-    {
-      "id": "SOS-607",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:22:59"
-    },
-    {
-      "id": "SOS-606",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:20:05"
-    },
-    {
-      "id": "SOS-605",
-      "location": "Bridge Pillar 12, River Basin",
-      "lat": 13.0855,
-      "lng": 80.268,
-      "accuracyMeters": 3.5,
-      "altitude": 12,
-      "satelliteLocked": false,
-      "imageUrl": null,
-      "callerName": "Rajesh Kumar",
-      "contact": "+1-555-333-2222",
-      "peopleTrapped": 3,
-      "urgency": "CRITICAL",
-      "description": "Water rising rapidly around vehicle",
-      "isResolved": true,
-      "timestamp": "2026-09-17 05:18:22"
-    },
-    {
-      "id": "SOS-604",
-      "location": "Sector 4 Submerged Terrace",
-      "lat": 13.0844,
-      "lng": 80.2712,
-      "accuracyMeters": 3.8,
-      "altitude": 18.5,
-      "satelliteLocked": true,
-      "callerName": "Sunita Rao",
-      "contact": "+1-555-8899",
-      "peopleTrapped": 6,
-      "urgency": "CRITICAL",
-      "description": "Roof surrounded by swift currents, 2 infants present",
-      "isResolved": false,
-      "timestamp": "2026-09-17 05:00:50"
-    },
-    {
-      "id": "SOS-603",
-      "location": "Block 9 Rooftop",
-      "lat": 13.096576588781286,
-      "lng": 80.25129820931848,
-      "callerName": "Jane Doe",
-      "contact": "+1-555-4433",
-      "peopleTrapped": 4,
-      "urgency": "CRITICAL",
-      "description": "Water reached 2nd floor",
-      "isResolved": true,
-      "timestamp": "2026-09-17 04:53:54"
-    },
-    {
-      "id": "SOS-601",
-      "location": "Sector 4 Bridge East",
-      "lat": 13.085,
-      "lng": 80.275,
       "callerName": "Samuel Green",
-      "contact": "+1 (555) 900-1111",
-      "peopleTrapped": 5,
+      "phone": "+1 (555) 234-5678",
+      "location": "Causeway North Crossing",
+      "peopleTrapped": 1,
       "urgency": "CRITICAL",
-      "description": "Rapidly rising water levels touching residential rooftop. Elderly citizen stranded.",
+      "hazardDescription": "Severe injury, compound fracture while evacuating.",
+      "lat": 13.089,
+      "lng": 80.275,
+      "timestamp": "2026-10-29T22:30:15.000Z",
       "isResolved": false,
-      "timestamp": "2026-09-17 09:20:15"
-    },
-    {
-      "id": "SOS-602",
-      "location": "Ridge View Apts Block C",
-      "lat": 13.118,
-      "lng": 80.215,
-      "callerName": "Karen Taylor",
-      "contact": "+1 (555) 900-2222",
-      "peopleTrapped": 3,
-      "urgency": "HIGH",
-      "description": "Stairwell partially obstructed after quake tremor. Need evacuation assistance.",
-      "isResolved": false,
-      "timestamp": "2026-09-17 09:55:40"
+      "dispatchedUnit": null
     }
   ],
   "donations": [
+    {
+      "id": "DON-519",
+      "donorName": "Global Humanitarian Trust",
+      "amount": 5000,
+      "purpose": "Emergency Food &amp; Water Supplies",
+      "date": "2026-10-30 04:04",
+      "txRef": "TXN-GDR2RXG"
+    },
     {
       "id": "DON-518",
       "donorName": "Global Humanitarian Trust",
@@ -1396,13 +877,13 @@
     }
   ],
   "counters": {
-    "incident": 119,
-    "camp": 218,
-    "victim": 319,
-    "volunteer": 420,
-    "donation": 519,
-    "sos": 619,
-    "citizenRequest": 716
+    "incident": 120,
+    "camp": 219,
+    "victim": 320,
+    "volunteer": 421,
+    "donation": 520,
+    "sos": 620,
+    "citizenRequest": 717
   },
   "catalog": [
     {
@@ -1540,6 +1021,40 @@
     }
   ],
   "citizenRequests": [
+    {
+      "id": "REQ-716",
+      "citizenName": "Deepa Krishnan",
+      "phone": "+1-555-888-9999",
+      "currentLocation": "Sector 4 Flood Zone",
+      "lat": 13.0827,
+      "lng": 80.2707,
+      "accuracyMeters": 10,
+      "satelliteLocked": false,
+      "nearestCampId": "CAMP-201",
+      "nearestCampName": "City Civic Arena Shelter",
+      "peopleCount": 4,
+      "deliveryPreference": "DOORSTEP_DELIVERY",
+      "itemsNeeded": [
+        {
+          "name": "Potable Drinking Water (5L)",
+          "category": "HYDRATION",
+          "quantity": 3,
+          "unit": "Cans"
+        }
+      ],
+      "itemsNotNeeded": [
+        "Emergency Blanket Pack"
+      ],
+      "itemsSurplus": [
+        {
+          "name": "Extra Flashlight",
+          "category": "SURVIVAL"
+        }
+      ],
+      "specialNotes": "Senior citizen needs insulin kept cold",
+      "status": "IN_TRANSIT",
+      "timestamp": "2026-10-30 04:04:50"
+    },
     {
       "id": "REQ-715",
       "citizenName": "Deepa Krishnan",

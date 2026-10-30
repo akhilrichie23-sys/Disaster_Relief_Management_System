@@ -2052,12 +2052,38 @@ function confirmCampReservation() {
   showToast(`✅ Reserved ${count} cots at ${camp} for ${name}. Evacuation Pass: WARM-${Math.floor(100+Math.random()*900)}`, 'success');
 }
 
-function renderShelterCards(filter = 'all') {
+let activeShelterFilter = 'all';
+let activeIncidentFilter = 'all';
+
+function renderShelterCards(filter = activeShelterFilter) {
+  activeShelterFilter = filter;
   const container = document.getElementById('shelterListContainer');
   if (!container) return;
 
-  const camps = appData.camps || [];
+  let camps = appData.camps || [];
   if (camps.length === 0) return;
+
+  // Filter based on selected category
+  if (filter === 'medical') {
+    camps = camps.filter(camp => {
+      const am = (camp.amenities || []).map(a => a.toLowerCase()).join(' ');
+      return am.includes('hospital') || am.includes('pediatric') || am.includes('clinic') || am.includes('medical') || am.includes('first aid');
+    });
+  } else if (filter === 'pets') {
+    camps = camps.filter(camp => {
+      const am = (camp.amenities || []).map(a => a.toLowerCase()).join(' ');
+      return am.includes('pet') || am.includes('animal') || am.includes('sanctuary');
+    });
+  }
+
+  if (camps.length === 0) {
+    container.innerHTML = `
+      <div class="p-8 text-center text-xs text-gray-400 bg-gray-950/40 rounded-2xl border border-gray-800">
+        No relief camps found matching the "<strong>${escapeHtml(filter)}</strong>" criteria.
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = camps.map(camp => {
     const percent = Math.round((camp.currentOccupancy / camp.capacity) * 100);
@@ -2087,7 +2113,7 @@ function renderShelterCards(filter = 'all') {
             </div>
           </div>
 
-          <button onclick="openCampReservation('${escapeHtml(camp.name)}')" class="flex-shrink-0 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-cyan-600 text-xs font-semibold text-gray-200 hover:text-white border border-gray-700 transition">
+          <button onclick="openCampReservation('${escapeHtml(camp.name)}')" class="flex-shrink-0 px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-cyan-600 text-xs font-semibold text-gray-200 hover:text-white border border-gray-700 transition cursor-pointer">
             Reserve Cot
           </button>
         </div>
@@ -2103,8 +2129,8 @@ function renderShelterCards(filter = 'all') {
         </div>
 
         <div class="flex flex-wrap gap-1.5 pt-1">
-          ${(camp.amenities || ['Medical Bay', 'Pet Friendly', 'Hot Meals']).map(b => `
-            <span class="px-2 py-0.5 rounded-md bg-gray-900 border border-gray-800 text-[11px] text-gray-300">
+          ${(camp.amenities || ['Clean Kitchen', 'WiFi Beacon']).map(b => `
+            <span class="px-2.5 py-1 rounded-lg bg-gray-900 border border-gray-800 text-[11px] text-gray-300 font-medium">
               ${escapeHtml(b)}
             </span>
           `).join('')}
@@ -2116,25 +2142,61 @@ function renderShelterCards(filter = 'all') {
 
 function filterShelters(type) {
   playBeep(450, 0.08);
+  activeShelterFilter = type;
   document.querySelectorAll('.shelter-filter-btn').forEach(btn => {
     btn.classList.remove('bg-gray-800', 'text-white', 'border-gray-700');
     btn.classList.add('text-gray-400', 'border-transparent');
   });
   if (window.event && window.event.target) {
-    window.event.target.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
-    window.event.target.classList.remove('text-gray-400', 'border-transparent');
+    const targetBtn = window.event.target.closest('button');
+    if (targetBtn) {
+      targetBtn.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+      targetBtn.classList.remove('text-gray-400', 'border-transparent');
+    }
   }
   renderShelterCards(type);
 }
 
-function renderHQIncidentsFeed() {
+function filterIncidents(filter) {
+  playBeep(450, 0.08);
+  activeIncidentFilter = filter;
+
+  // Sync active classes on top buttons
+  document.querySelectorAll('.inc-tab').forEach(b => {
+    b.classList.remove('bg-gray-800', 'text-white', 'border-gray-700');
+    b.classList.add('border-transparent');
+  });
+  const topActive = document.getElementById(`inc-filter-${filter === 'in_progress' ? 'dispatched' : filter}`);
+  if (topActive) {
+    topActive.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+    topActive.classList.remove('border-transparent');
+  }
+
+  // Sync active classes on side-filter buttons
+  document.querySelectorAll('.inc-side-filter').forEach(b => {
+    b.classList.remove('bg-gray-800', 'text-white', 'border-gray-700');
+    b.classList.add('border-transparent');
+  });
+  if (window.event && window.event.target) {
+    const clicked = window.event.target.closest('button');
+    if (clicked) {
+      clicked.classList.add('bg-gray-800', 'text-white', 'border-gray-700');
+      clicked.classList.remove('border-transparent');
+    }
+  }
+
+  renderHQIncidentsFeed(filter);
+}
+
+function renderHQIncidentsFeed(filter = activeIncidentFilter) {
+  activeIncidentFilter = filter;
   const container = document.getElementById('incidentsContainer');
   if (!container) return;
 
   const incidents = appData.incidents || [];
   const sosCalls = appData.emergencySOS || [];
 
-  const combined = [
+  let combined = [
     ...sosCalls.map(s => ({
       id: s.id,
       time: s.timestamp ? new Date(s.timestamp).toLocaleTimeString() : 'Active',
@@ -2142,44 +2204,66 @@ function renderHQIncidentsFeed() {
       priority: s.urgency || 'CRITICAL',
       location: s.location,
       details: s.hazardDescription || 'Distress signal received via GPS.',
-      status: s.isResolved ? 'Resolved' : 'Pending Rescue',
-      isSOS: true
+      status: s.isResolved ? 'Resolved' : (s.dispatchedUnit ? 'Unit Dispatched' : 'Pending Rescue'),
+      isSOS: true,
+      isResolved: s.isResolved,
+      dispatchedUnit: s.dispatchedUnit
     })),
     ...incidents.map(i => ({
       id: i.id,
-      time: i.reportedTime || 'Reported',
-      type: `${i.type} Threat`,
+      time: i.reportedTime ? new Date(i.reportedTime).toLocaleTimeString() : 'Reported',
+      type: `${i.type} Threat Zone`,
       priority: i.severity || 'HIGH',
       location: i.location,
-      details: `${(i.affectedPopulation || 0).toLocaleString()} people affected in zone.`,
-      status: i.status === 'RESOLVED' ? 'Resolved' : 'Active Operation',
-      isSOS: false
+      details: `${(i.affectedPopulation || 0).toLocaleString()} people affected in zone. ${i.description || ''}`,
+      status: i.status === 'RESOLVED' ? 'Resolved' : (i.assignedUnit ? 'Unit Dispatched' : 'Active Operation'),
+      isSOS: false,
+      isResolved: i.status === 'RESOLVED',
+      dispatchedUnit: i.assignedUnit
     }))
   ];
 
+  // Apply filtering
+  if (filter === 'critical') {
+    combined = combined.filter(item => item.priority === 'CRITICAL');
+  } else if (filter === 'high') {
+    combined = combined.filter(item => item.priority === 'HIGH');
+  } else if (filter === 'in_progress') {
+    combined = combined.filter(item => item.status.includes('Dispatched') || item.status.includes('In Progress') || item.status.includes('Active'));
+  }
+
   if (combined.length === 0) {
-    container.innerHTML = `<div class="p-6 text-center text-xs text-gray-500">No active distress incidents at this time.</div>`;
+    container.innerHTML = `
+      <div class="p-8 text-center text-xs text-gray-400 bg-gray-950/40 rounded-2xl border border-gray-800">
+        No incidents or distress signals found matching the "<strong>${escapeHtml(filter)}</strong>" filter.
+      </div>
+    `;
     return;
   }
 
   container.innerHTML = combined.map(item => {
     const isCritical = item.priority === 'CRITICAL';
+    const isHigh = item.priority === 'HIGH';
     const badgeStyle = isCritical 
       ? 'bg-red-950 text-red-400 border-red-800 font-black' 
+      : isHigh
+      ? 'bg-orange-950 text-orange-400 border-orange-800 font-bold'
       : 'bg-amber-950 text-amber-400 border-amber-800 font-bold';
+
+    const isResolved = item.isResolved || item.status === 'Resolved';
 
     return `
       <div class="p-4 rounded-2xl bg-gray-950/70 border border-gray-800 hover:border-gray-700 transition space-y-2.5">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-mono font-bold text-white">${item.id}</span>
+            <span class="text-xs font-mono font-bold text-white">${escapeHtml(item.id)}</span>
             <span class="px-2 py-0.5 rounded text-[10px] uppercase font-mono border ${badgeStyle}">
-              ${item.priority}
+              ${escapeHtml(item.priority)}
             </span>
-            <span class="text-xs text-gray-500 font-mono">${item.time}</span>
+            <span class="text-xs text-gray-500 font-mono">${escapeHtml(item.time)}</span>
           </div>
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-gray-900 border border-gray-800 text-gray-300">
-            ${item.status}
+          <span class="text-xs font-mono px-2 py-0.5 rounded ${isResolved ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-gray-900 text-gray-300 border border-gray-800'}">
+            ${escapeHtml(item.status)}
           </span>
         </div>
 
@@ -2195,15 +2279,23 @@ function renderHQIncidentsFeed() {
           </span>
 
           <div class="flex items-center gap-2 flex-shrink-0">
-            ${item.isSOS ? `
-              <button onclick="resolveSOS('${item.id}')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs transition">
-                Mark Safe / Rescued
-              </button>
-            ` : `
-              <button onclick="updateIncidentStatus('${item.id}', 'RESOLVED')" class="px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-white font-medium text-xs transition">
-                Resolve Threat
-              </button>
-            `}
+            ${item.isSOS ? (
+              isResolved ? `
+                <span class="text-emerald-400 text-xs font-semibold">✓ Safe & Closed</span>
+              ` : `
+                <button onclick="resolveSOS('${item.id}')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs transition cursor-pointer">
+                  Mark Safe / Rescued
+                </button>
+              `
+            ) : (
+              isResolved ? `
+                <span class="text-emerald-400 text-xs font-semibold">✓ Threat Resolved</span>
+              ` : `
+                <button onclick="updateIncidentStatus('${item.id}', 'RESOLVED')" class="px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-white font-medium text-xs transition cursor-pointer">
+                  Resolve Threat
+                </button>
+              `
+            )}
           </div>
         </div>
       </div>
