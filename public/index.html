@@ -669,13 +669,10 @@
           <p class="text-xs sm:text-sm text-gray-400">Direct interface for commanders, boat teams, shelter leads, and supply pilots.</p>
         </div>
 
-        <div class="flex items-center gap-2 text-xs flex-wrap">
-          <button id="inc-filter-all" onclick="filterIncidents('all')" class="inc-tab px-3.5 py-2 rounded-xl bg-gray-800 text-white border border-gray-700 font-semibold cursor-pointer">All</button>
-          <button id="inc-filter-critical" onclick="filterIncidents('critical')" class="inc-tab px-3.5 py-2 rounded-xl text-red-400 hover:bg-gray-800/80 border border-transparent font-semibold cursor-pointer">🚨 Critical SOS</button>
-          <button id="inc-filter-high" onclick="filterIncidents('high')" class="inc-tab px-3.5 py-2 rounded-xl text-orange-400 hover:bg-gray-800/80 border border-transparent font-semibold cursor-pointer">⚠️ High Urgency</button>
-          <button id="inc-filter-dispatched" onclick="filterIncidents('in_progress')" class="inc-tab px-3.5 py-2 rounded-xl text-amber-400 hover:bg-gray-800/80 border border-transparent font-semibold cursor-pointer">🚤 Dispatched</button>
-          <button onclick="openModal('modal-incident')" class="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold transition flex items-center gap-1.5 cursor-pointer ml-auto">
-            <span>+</span> Log Incident
+        <div>
+          <button onclick="openModal('modal-incident')" class="px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-red-950/60 glow-red transition-all flex items-center justify-center gap-2 cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]">
+            <span class="text-lg leading-none">+</span>
+            <span>Log Incident</span>
           </button>
         </div>
       </section>
